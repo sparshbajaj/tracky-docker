@@ -273,6 +273,36 @@ export default function AIChatConversation({
 
 	if (!user) return null
 
+	const compressImage = async (file: File): Promise<File> => {
+		const maxDimension = 2048
+		const quality = 0.85
+		const bitmap = await createImageBitmap(file)
+		const { width, height } = bitmap
+
+		let targetWidth = width
+		let targetHeight = height
+
+		if (width > maxDimension || height > maxDimension) {
+			if (width > height) {
+				targetWidth = maxDimension
+				targetHeight = Math.round((height / width) * maxDimension)
+			} else {
+				targetHeight = maxDimension
+				targetWidth = Math.round((width / height) * maxDimension)
+			}
+		}
+
+		const canvas = new OffscreenCanvas(targetWidth, targetHeight)
+		const ctx = canvas.getContext('2d')!
+		ctx.drawImage(bitmap, 0, 0, targetWidth, targetHeight)
+		bitmap.close()
+
+		const blob = await canvas.convertToBlob({ type: 'image/jpeg', quality })
+		return new File([blob], file.name.replace(/\.[^.]+$/, '.jpg'), {
+			type: 'image/jpeg'
+		})
+	}
+
 	const fileToDataUrl = (file: File) =>
 		new Promise<string>((resolve, reject) => {
 			const reader = new FileReader()
@@ -359,7 +389,8 @@ export default function AIChatConversation({
 		if (loading) return
 		setLoading(true)
 		try {
-			const dataUrl = await fileToDataUrl(file)
+			const compressed = await compressImage(file)
+			const dataUrl = await fileToDataUrl(compressed)
 			const typedDescription = input.trim()
 			const placeholderContent = typedDescription || defaultMessage
 			setInput('')
@@ -368,14 +399,14 @@ export default function AIChatConversation({
 				content: placeholderContent,
 				image: {
 					dataUrl,
-					mimeType: file.type
+					mimeType: compressed.type
 				},
 				clientTime: new Date().toISOString()
 			})
 			await appendMessages([placeholderMessage])
 
 			if (!typedDescription) {
-				const caption = await describeImageWithTimeout(dataUrl, file.type)
+				const caption = await describeImageWithTimeout(dataUrl, compressed.type)
 				if (caption) {
 					await updateMessageContent(placeholderMessage.id, caption)
 				}

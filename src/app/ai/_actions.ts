@@ -37,8 +37,16 @@ const macroInstruction =
 const portionInstruction =
 	'Always provide a positive numeric portion in grams for every consumption entry. When the user omits measurements, infer realistic gram amounts using common serving sizes (a medium apple ≈ 180g, banana ≈ 120g, cup ≈ 240g). Never leave portion null or zero.'
 
-const AI_TIMEOUT_MS = 25000
-const IMAGE_TIMEOUT_MS = 15000
+const AI_TIMEOUT_MS = 120000
+const IMAGE_TIMEOUT_MS = 60000
+
+const GEMINI_MODELS = [
+	'gemini-2.5-flash-lite',
+	'gemini-2.0-flash',
+	'gemini-2.5-pro',
+	'gemini-3-flash-preview',
+	'gemini-3-pro-preview'
+] as const
 
 const imageUrlPattern = /^data:(?<mime>[^;]+);base64,(?<data>.+)$/
 
@@ -73,12 +81,15 @@ const withTimeout = async <T>(
 	}
 }
 
-const toCoreMessages = (messages: Message[]): CoreMessage[] =>
-	messages.map(message => {
+const toCoreMessages = (
+	messages: Message[],
+	includeImageForIndex?: number
+): CoreMessage[] =>
+	messages.map((message, index) => {
 		if (message.role === 'assistant') {
 			return { role: 'assistant', content: message.content }
 		}
-		if (message.image) {
+		if (message.image && index === includeImageForIndex) {
 			const content: Array<TextPart | ImagePart> = []
 			if (message.content) {
 				content.push({ type: 'text', text: message.content })
@@ -299,11 +310,14 @@ const classifyGenerationError = (error: unknown): GenerationFailureReason => {
 	return 'unknown'
 }
 
-const retryNoticeForReason = (reason: GenerationFailureReason) => {
+const retryNoticeForReason = (
+	reason: GenerationFailureReason,
+	modelId: string
+) => {
 	if (reason === 'timeout') {
-		return 'The AI request took too long. Retrying with a smarter model...'
+		return `The AI request took too long. Retrying with ${modelId}...`
 	}
-	return 'I could not interpret those entries yet. Retrying with a smarter model...'
+	return `I could not interpret those entries yet. Retrying with ${modelId}...`
 }
 
 const failureMessageForReason = (reason: GenerationFailureReason) => {
@@ -448,13 +462,15 @@ export async function logHealthAI(messages: Message[]): Promise<Message[]> {
 	const hasImageInput = Boolean(latestUserMessage?.image)
 	const sourceMessages =
 		latestUserMessage !== undefined ? [latestUserMessage] : messages
-	const formattedMessages = toCoreMessages(sourceMessages)
+	const imageIndex = hasImageInput ? 0 : undefined
+	const formattedMessages = toCoreMessages(sourceMessages, imageIndex)
 	const responseMessages: Message[] = [...messages]
-	const retryModels = ['gemini-2.5-flash-lite', 'gemini-2.5-flash'] as const
+	const startIndex = hasImageInput ? 3 : 0
 	let failureReason: GenerationFailureReason = 'unknown'
 	let object: z.infer<typeof MultiIntentSchema> | null = null
 
-	for (const [index, modelId] of retryModels.entries()) {
+	for (let i = startIndex; i < GEMINI_MODELS.length; i++) {
+		const modelId = GEMINI_MODELS[i]!
 		try {
 			const result = await withTimeout(
 				generateObject({
@@ -473,7 +489,7 @@ export async function logHealthAI(messages: Message[]): Promise<Message[]> {
 		} catch (error) {
 			console.error('Error generating multi-intent object:', error)
 			failureReason = classifyGenerationError(error)
-			if (index === retryModels.length - 1) {
+			if (i === GEMINI_MODELS.length - 1) {
 				responseMessages.push({
 					role: 'assistant',
 					content: failureMessageForReason(failureReason)
@@ -482,7 +498,7 @@ export async function logHealthAI(messages: Message[]): Promise<Message[]> {
 			}
 			responseMessages.push({
 				role: 'assistant',
-				content: retryNoticeForReason(failureReason)
+				content: retryNoticeForReason(failureReason, GEMINI_MODELS[i + 1]!)
 			})
 		}
 	}
@@ -766,39 +782,47 @@ export async function describeEntryImage({
 }: DescribeImageInput): Promise<string> {
 	const buffer = decodeBase64Image(dataUrl)
 	if (!buffer) return 'Entry image'
+	const startIndex = 3
 
-	try {
-		const result = await withTimeout(
-			generateObject({
-				model: google('gemini-2.5-flash-lite', {
-					structuredOutputs: false
+	for (let i = startIndex; i < GEMINI_MODELS.length; i++) {
+		const modelId = GEMINI_MODELS[i]!
+		try {
+			const result = await withTimeout(
+				generateObject({
+					model: google(modelId, {
+						structuredOutputs: false
+					}),
+					system:
+						'Describe whether this image shows a meal or an exercise screen. Mention key foods for meals or workout type plus metrics for exercises in under eight words.',
+					messages: [
+						{
+							role: 'user',
+							content: [
+								{
+									type: 'text',
+									text: 'Describe this image for a fitness tracker entry.'
+								},
+								{
+									type: 'image',
+									image: buffer,
+									mimeType
+								}
+							] as Array<TextPart | ImagePart>
+						}
+					],
+					schema: exerciseImageSummarySchema
 				}),
-				system:
-					'Describe whether this image shows a meal or an exercise screen. Mention key foods for meals or workout type plus metrics for exercises in under eight words.',
-				messages: [
-					{
-						role: 'user',
-						content: [
-							{
-								type: 'text',
-								text: 'Describe this image for a fitness tracker entry.'
-							},
-							{
-								type: 'image',
-								image: buffer,
-								mimeType
-							}
-						] as Array<TextPart | ImagePart>
-					}
-				],
-				schema: exerciseImageSummarySchema
-			}),
-			IMAGE_TIMEOUT_MS,
-			'describeEntryImage generateObject'
-		)
-		return result.object.summary.trim() || 'Entry image'
-	} catch (error) {
-		console.error('Error describing entry image:', error)
-		return 'Entry image'
+				IMAGE_TIMEOUT_MS,
+				'describeEntryImage generateObject'
+			)
+			return result.object.summary.trim() || 'Entry image'
+		} catch (error) {
+			console.error('Error describing entry image:', error)
+			if (i === GEMINI_MODELS.length - 1) {
+				return 'Entry image'
+			}
+		}
 	}
+
+	return 'Entry image'
 }

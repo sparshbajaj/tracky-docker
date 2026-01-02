@@ -13,6 +13,9 @@ const config = {
 		staleTimes: {
 			dynamic: 1440, // 12 hours
 			static: 43200 // 15 days
+		},
+		serverActions: {
+			bodySizeLimit: '25mb'
 		}
 	},
 	images: {
