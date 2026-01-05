@@ -6,10 +6,11 @@ await import('./src/env.js')
 
 /** @type {import("next").NextConfig} */
 const config = {
+	// Next.js 16: reactCompiler is now stable (top-level)
+	reactCompiler: true,
+	// Next.js 16: cacheComponents replaces experimental.ppr and experimental.dynamicIO
+	cacheComponents: true,
 	experimental: {
-		reactCompiler: true,
-		ppr: 'incremental',
-		dynamicIO: true,
 		staleTimes: {
 			dynamic: 1440, // 12 hours
 			static: 43200 // 15 days
