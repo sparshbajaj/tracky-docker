@@ -3,7 +3,7 @@
 import 'server-only'
 import { clerkClient, currentUser } from '@clerk/nextjs/server'
 import { calculateBodyFat } from '~/lib/calculations'
-import { revalidatePath, revalidateTag } from 'next/cache'
+import { revalidatePath, updateTag } from 'next/cache'
 
 export const updatePublicMetadata = async (
 	metadata: Partial<UserPublicMetadata>
@@ -48,7 +48,7 @@ export const updatePublicMetadata = async (
 			publicMetadata: metadata as UserPublicMetadata
 		})
 
-		revalidateTag('nutrition')
+		updateTag('nutrition')
 		revalidatePath('/settings')
 
 		if (!metadata.goalWeight) {

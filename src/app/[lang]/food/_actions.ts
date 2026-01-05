@@ -2,7 +2,7 @@
 
 import 'server-only'
 import { auth } from '@clerk/nextjs/server'
-import { revalidatePath, revalidateTag } from 'next/cache'
+import { revalidatePath, updateTag } from 'next/cache'
 import { db } from '~/server/db'
 import { food } from '~/server/db/schema'
 import { FoodSchema } from '~/lib/ai/food-schema'
@@ -84,7 +84,7 @@ export const registerFood = async (
 		normalizeFoodUnits(newFood)
 
 		await db.insert(food).values(newFood)
-		revalidateTag('food')
+		updateTag('food')
 		revalidatePath('/food')
 		revalidatePath('/diary')
 		return { message: 'Food registered successfully', success: true }

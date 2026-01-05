@@ -23,7 +23,7 @@ import {
 import { getMealCategoryFromTime } from '~/lib/utils'
 import { calculateEnergyBurned } from '~/lib/calculations'
 import { desc, ilike } from 'drizzle-orm'
-import { revalidatePath, revalidateTag } from 'next/cache'
+import { revalidatePath, updateTag } from 'next/cache'
 import { SuccessLogData, TrakedField } from '~/types'
 import { EXERCISE_ICONS } from '~/constants'
 import type { DescribeImageInput, Message } from './types'
@@ -717,22 +717,22 @@ export async function logHealthAI(messages: Message[]): Promise<Message[]> {
 	}
 
 	if (shouldRevalidateFood) {
-		revalidateTag('food')
+		updateTag('food')
 		revalidatePath('/food')
 		revalidatePath('/diary')
 	}
 
 	if (shouldRevalidateConsumption) {
-		revalidateTag('resume-streak')
-		revalidateTag('nutrition')
-		revalidateTag('food')
+		updateTag('resume-streak')
+		updateTag('nutrition')
+		updateTag('food')
 		revalidatePath('/food')
 		revalidatePath('/dashboard')
 		revalidatePath('/diary')
 	}
 
 	if (shouldRevalidateExercise) {
-		revalidateTag('resume-streak')
+		updateTag('resume-streak')
 		revalidatePath('/exercise')
 		revalidatePath('/dashboard')
 		revalidatePath('/diary')

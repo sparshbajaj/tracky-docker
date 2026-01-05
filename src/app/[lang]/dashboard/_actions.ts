@@ -2,7 +2,7 @@
 
 import 'server-only'
 import { auth } from '@clerk/nextjs/server'
-import { revalidatePath, revalidateTag } from 'next/cache'
+import { revalidatePath, updateTag } from 'next/cache'
 import { z } from 'zod'
 import { db } from '~/server/db'
 import {
@@ -79,8 +79,8 @@ export const addConsumption = async (
 		}
 
 		await db.insert(consumption).values(newConsumption)
-		revalidateTag('nutrition')
-		revalidateTag('resume-streak')
+		updateTag('nutrition')
+		updateTag('resume-streak')
 		revalidatePath('/dashboard')
 		revalidatePath('/food')
 		revalidatePath('/diary')
@@ -151,7 +151,7 @@ export const addExercise = async (
 	try {
 		const newExercise = validatedFields.data satisfies NewExercise
 		await db.insert(exercise).values(newExercise)
-		revalidateTag('resume-streak')
+		updateTag('resume-streak')
 		revalidatePath('/dashboard')
 		revalidatePath('/exercise')
 		revalidatePath('/diary')
