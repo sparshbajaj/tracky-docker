@@ -10,10 +10,7 @@ import { food } from '~/server/db/schema'
 import { eq, isNull, or } from 'drizzle-orm'
 import { currentUser } from '@clerk/nextjs/server'
 import { AddMealButton } from './add-meal-button'
-import {
-	unstable_cacheLife as cacheLife,
-	unstable_cacheTag as cacheTag
-} from 'next/cache'
+import { cacheLife, cacheTag } from 'next/cache'
 import { getDictionary } from '~/get-dictionary'
 import { type Locale, i18n } from '~/i18n-config'
 import { FoodDataTable } from './food-data-table'
