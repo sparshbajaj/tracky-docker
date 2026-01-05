@@ -102,10 +102,12 @@ export default async function LangLayout({
 	params
 }: {
 	children: React.ReactNode
-	params: Promise<{ lang: Locale }>
+	params: Promise<{ lang: string }>
 }) {
 	const { lang } = await params
-	const locale = i18n.locales.includes(lang) ? lang : i18n.defaultLocale
+	const locale = i18n.locales.includes(lang as Locale)
+		? (lang as Locale)
+		: i18n.defaultLocale
 	const dictionary = await getDictionary(locale)
 
 	return (
