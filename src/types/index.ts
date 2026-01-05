@@ -103,6 +103,7 @@ export interface SettingsAttr {
 	label?: string
 	placeholder?: string
 	options?: Array<{ key: string; label: string } | string>
+	optionLabels?: Record<string, string>
 	min?: number
 	max?: number
 	value: Date | string | number

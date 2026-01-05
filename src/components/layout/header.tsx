@@ -1,3 +1,5 @@
+'use client'
+
 import {
 	ClerkLoaded,
 	ClerkLoading,
@@ -14,13 +16,23 @@ import { Badge } from '../ui/badge'
 import ExternalLink from '../ui/external-link'
 import NavLinks from './nav-links'
 import { Skeleton } from '../ui/skeleton'
+import { LanguageSwitcher } from './language-switcher'
+import { useDictionary } from '~/components/providers/dictionary-provider'
+import { i18n } from '~/i18n-config'
 
 export function Header() {
+	const { dictionary, locale } = useDictionary()
+
+	const getHref = (path: string) => {
+		if (locale === i18n.defaultLocale) return path
+		return `/${locale}${path}`
+	}
+
 	return (
 		<nav className='flex w-full items-center justify-between px-5 pb-2 pt-8 text-xl font-semibold md:px-10 lg:px-16'>
 			<div className='flex space-x-10 md:space-x-28'>
 				<Link
-					href='/'
+					href={getHref('/')}
 					className='flex items-center space-x-3 transition-opacity hover:opacity-80 rtl:space-x-reverse'
 				>
 					<h1 className='font-serif text-3xl font-bold text-green-600 dark:text-green-500'>
@@ -30,7 +42,7 @@ export function Header() {
 						className='hidden cursor-pointer rounded-full md:block'
 						variant='outline'
 					>
-						beta
+						{dictionary.common.beta}
 					</Badge>
 				</Link>
 				<NavLinks />
@@ -43,6 +55,7 @@ export function Header() {
 					<Github className='h-6 w-6' />
 				</ExternalLink>
 
+				<LanguageSwitcher />
 				<ModeToggle />
 				<SignedOut>
 					<ClerkLoaded>
@@ -50,12 +63,12 @@ export function Header() {
 							className='rounded-full bg-forest-300 font-medium text-wood-950 hover:bg-forest-400 dark:bg-forest-600 dark:text-wood-100 dark:hover:bg-forest-500'
 							asChild
 						>
-							<SignInButton>Sign In</SignInButton>
+							<SignInButton>{dictionary.common.signIn}</SignInButton>
 						</Button>
 					</ClerkLoaded>
 					<ClerkLoading>
 						<Button className='rounded-full bg-forest-300 font-medium text-wood-950 hover:bg-forest-400 dark:bg-forest-600 dark:text-wood-100 dark:hover:bg-forest-500'>
-							Sign In
+							{dictionary.common.signIn}
 						</Button>
 					</ClerkLoading>
 				</SignedOut>

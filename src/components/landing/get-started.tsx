@@ -1,3 +1,5 @@
+'use client'
+
 import {
 	ClerkLoaded,
 	ClerkLoading,
@@ -8,8 +10,11 @@ import {
 import { Button } from '../ui/button'
 import { HouseIcon, Play } from 'lucide-react'
 import Link from 'next/link'
+import { useDictionary } from '../providers/dictionary-provider'
 
 export function GetStartedButton() {
+	const { dictionary } = useDictionary()
+
 	return (
 		<>
 			<ClerkLoading>
@@ -20,7 +25,9 @@ export function GetStartedButton() {
 				>
 					<span className='flex space-x-2'>
 						<Play className='h-5 w-5 duration-100 ease-in-out group-hover:scale-110' />
-						<i className='text-base font-medium not-italic'>Get started</i>
+						<i className='text-base font-medium not-italic'>
+							{dictionary.landing.hero.getStarted}
+						</i>
 					</span>
 				</Button>
 			</ClerkLoading>
@@ -35,7 +42,9 @@ export function GetStartedButton() {
 						<span className='flex space-x-2'>
 							<Play className='h-5 w-5 duration-100 ease-in-out group-hover:scale-110' />
 							<SignInButton>
-								<i className='text-base font-medium not-italic'>Get started</i>
+								<i className='text-base font-medium not-italic'>
+									{dictionary.landing.hero.getStarted}
+								</i>
 							</SignInButton>
 						</span>
 					</Button>
@@ -51,7 +60,9 @@ export function GetStartedButton() {
 					>
 						<Link className='flex space-x-2' href='/dashboard'>
 							<HouseIcon className='h-4 w-4 duration-100 ease-in-out group-hover:scale-110' />
-							<i className='text-base font-medium not-italic'>Dashboard</i>
+							<i className='text-base font-medium not-italic'>
+								{dictionary.landing.hero.dashboard}
+							</i>
 						</Link>
 					</Button>
 				</SignedIn>
