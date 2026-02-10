@@ -6,13 +6,12 @@ await import('./src/env.js')
 
 /** @type {import("next").NextConfig} */
 const config = {
+	cacheComponents: true,
+	reactCompiler: true,
 	experimental: {
-		reactCompiler: true,
-		ppr: 'incremental',
-		dynamicIO: true,
 		staleTimes: {
-			dynamic: 1440, // 12 hours
-			static: 43200 // 15 days
+			dynamic: 1440,
+			static: 43200
 		},
 		serverActions: {
 			bodySizeLimit: '25mb'

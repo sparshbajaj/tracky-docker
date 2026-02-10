@@ -13,8 +13,8 @@ import { eq, isNull, or } from 'drizzle-orm'
 import { currentUser } from '@clerk/nextjs/server'
 import { AddMealButton } from './add-meal-button'
 import {
-	unstable_cacheLife as cacheLife,
-	unstable_cacheTag as cacheTag
+	cacheLife,
+	cacheTag
 } from 'next/cache'
 
 async function getFoodData(userId: string) {

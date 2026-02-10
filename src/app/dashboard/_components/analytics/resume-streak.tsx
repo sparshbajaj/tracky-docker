@@ -3,8 +3,8 @@
 import { desc, eq } from 'drizzle-orm'
 import { Dumbbell, HandPlatter } from 'lucide-react'
 import {
-	unstable_cacheLife as cacheLife,
-	unstable_cacheTag as cacheTag
+	cacheLife,
+	cacheTag
 } from 'next/cache'
 import { Card } from '~/components/ui/card'
 import { calculateStreak } from '~/lib/calculations'

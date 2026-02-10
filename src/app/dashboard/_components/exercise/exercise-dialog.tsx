@@ -11,7 +11,7 @@ import {
 import ExerciseCategories from './exercise-categories'
 import { db } from '~/server/db'
 import { exerciseCategory } from '~/server/db/schema'
-import { unstable_cacheLife as cacheLife } from 'next/cache'
+import { cacheLife } from 'next/cache'
 import { AddExerciseButton } from './add-exercise-button'
 
 export default async function ExerciseDialog() {
