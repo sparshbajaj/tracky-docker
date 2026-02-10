@@ -79,8 +79,8 @@ export const addConsumption = async (
 		}
 
 		await db.insert(consumption).values(newConsumption)
-		revalidateTag('nutrition')
-		revalidateTag('resume-streak')
+		revalidateTag('nutrition', 'max')
+		revalidateTag('resume-streak', 'max')
 		revalidatePath('/dashboard')
 		revalidatePath('/food')
 		revalidatePath('/diary')
@@ -151,7 +151,7 @@ export const addExercise = async (
 	try {
 		const newExercise = validatedFields.data satisfies NewExercise
 		await db.insert(exercise).values(newExercise)
-		revalidateTag('resume-streak')
+		revalidateTag('resume-streak', 'max')
 		revalidatePath('/dashboard')
 		revalidatePath('/exercise')
 		revalidatePath('/diary')

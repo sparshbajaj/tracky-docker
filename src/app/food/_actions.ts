@@ -84,7 +84,7 @@ export const registerFood = async (
 		normalizeFoodUnits(newFood)
 
 		await db.insert(food).values(newFood)
-		revalidateTag('food')
+		revalidateTag('food', 'max')
 		revalidatePath('/food')
 		revalidatePath('/diary')
 		return { message: 'Food registered successfully', success: true }

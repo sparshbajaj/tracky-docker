@@ -717,22 +717,22 @@ export async function logHealthAI(messages: Message[]): Promise<Message[]> {
 	}
 
 	if (shouldRevalidateFood) {
-		revalidateTag('food')
+		revalidateTag('food', 'max')
 		revalidatePath('/food')
 		revalidatePath('/diary')
 	}
 
 	if (shouldRevalidateConsumption) {
-		revalidateTag('resume-streak')
-		revalidateTag('nutrition')
-		revalidateTag('food')
+		revalidateTag('resume-streak', 'max')
+		revalidateTag('nutrition', 'max')
+		revalidateTag('food', 'max')
 		revalidatePath('/food')
 		revalidatePath('/dashboard')
 		revalidatePath('/diary')
 	}
 
 	if (shouldRevalidateExercise) {
-		revalidateTag('resume-streak')
+		revalidateTag('resume-streak', 'max')
 		revalidatePath('/exercise')
 		revalidatePath('/dashboard')
 		revalidatePath('/diary')
