@@ -9,7 +9,7 @@ import {
 	SelectTrigger,
 	SelectValue
 } from '~/components/ui/select'
-import { SettingsAttr } from '~/types'
+import { type SettingsAttr } from '~/types'
 import { useDictionary } from '~/components/providers/dictionary-provider'
 
 export function SelectField({ attr }: { attr: SettingsAttr }) {
@@ -17,7 +17,7 @@ export function SelectField({ attr }: { attr: SettingsAttr }) {
 	const { dictionary } = useDictionary()
 
 	const getOptionLabel = (opt: string) => {
-		if (attr.optionLabels && attr.optionLabels[opt]) {
+		if (attr.optionLabels?.[opt]) {
 			return attr.optionLabels[opt]
 		}
 		return opt

@@ -9,8 +9,8 @@ import {
 	Drumstick,
 	Nut
 } from 'lucide-react'
-import { DailyUserStats } from '~/types'
-import { EntryType } from '~/types/diary'
+import { type DailyUserStats } from '~/types'
+import { type EntryType } from '~/types/diary'
 import { formatNumber } from '~/lib/utils'
 import { useDictionary } from '~/components/providers/dictionary-provider'
 

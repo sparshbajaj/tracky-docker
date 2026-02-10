@@ -1,4 +1,4 @@
-import { diaryGroupEnum, effortEnum } from '~/server/db/schema'
+import { type diaryGroupEnum, type effortEnum } from '~/server/db/schema'
 
 export type EntryType =
 	| 'meal'

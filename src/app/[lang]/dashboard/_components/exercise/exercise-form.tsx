@@ -12,8 +12,8 @@ import {
 } from '~/components/ui/select'
 import { DialogClose, DialogFooter } from '~/components/ui/dialog'
 import { Button } from '~/components/ui/button'
-import { ExerciseState, addExercise } from '../../_actions'
-import { ExerciseCategories, TrakedField } from '~/types'
+import { type ExerciseState, addExercise } from '../../_actions'
+import { type ExerciseCategories } from '~/types'
 import { useUser } from '@clerk/nextjs'
 import { EFFORT_LEVELS } from '~/constants'
 import { ShowErrors } from '~/components/forms/show-errors'
@@ -68,9 +68,9 @@ export default function ExerciseForm({
 	if (!user) return null
 	const { weights, height, born, sex } = user.publicMetadata
 
-	const currentWeight = weights[weights.length - 1] as TrakedField[number]
-	const age = new Date().getFullYear() - new Date(born as string).getFullYear()
-	const currentHeight = height[height.length - 1] as TrakedField[number]
+	const currentWeight = weights[weights.length - 1]!
+	const age = new Date().getFullYear() - new Date(born).getFullYear()
+	const currentHeight = height[height.length - 1]!
 
 	function CancelButton() {
 		return (

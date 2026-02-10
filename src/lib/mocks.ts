@@ -1,4 +1,4 @@
-import { Message } from '~/app/ai/types'
+import { type Message } from '~/app/ai/types'
 
 export const fakeLogMealAI = async (conversation: Message[]) => {
 	const response = [

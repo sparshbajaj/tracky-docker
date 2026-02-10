@@ -39,7 +39,7 @@ export const updatePublicMetadata = async (
 
 			const fat = {
 				value: calculateBodyFat(publicMetadata),
-				date: new Date().toISOString().split('T')[0] as string
+				date: new Date().toISOString().split('T')[0]!
 			}
 			metadata.fat?.push(fat)
 		}

@@ -1,4 +1,4 @@
-import { SuccessLogData } from '~/types'
+import { type SuccessLogData } from '~/types'
 
 export interface Message {
 	role: 'user' | 'assistant'
@@ -23,4 +23,3 @@ export type PersistedMessage = Message & {
 	id: string
 	createdAt: string
 }
-

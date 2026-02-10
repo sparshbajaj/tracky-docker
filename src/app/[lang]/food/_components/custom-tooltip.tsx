@@ -5,7 +5,7 @@ interface Props {
 }
 
 export function CustomTooltip({ active, payload, label }: Props) {
-	if (!active || !payload || !payload.length) return null
+	if (!active || !payload?.length) return null
 
 	return (
 		<div className='rounded-lg border border-border bg-background p-4 shadow-lg'>

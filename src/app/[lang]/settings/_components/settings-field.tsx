@@ -1,6 +1,6 @@
 'use client'
 
-import { FieldTypes, SettingsAttr } from '~/types'
+import { type FieldTypes, type SettingsAttr } from '~/types'
 import { DateField } from './date-field'
 import { SelectField } from './select-field'
 import { NumberField } from './number-field'

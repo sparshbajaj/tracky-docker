@@ -1,10 +1,10 @@
 'use client'
 
-import { DiaryEntry, EntryType } from '~/types/diary'
+import { type DiaryEntry, type EntryType } from '~/types/diary'
 import { TimelineEntry } from './timeline-entry'
 import { format } from 'date-fns'
 import { Header } from './header'
-import { DailyUserStats } from '~/types'
+import { type DailyUserStats } from '~/types'
 import { DailySummary } from './daily-summary'
 import { useSearchParams } from 'next/navigation'
 import React from 'react'
@@ -15,7 +15,7 @@ export function DiaryTimeline({
 	userDailyResume
 }: {
 	diaryEntries: DiaryEntry[]
-	userDailyResume: { [key: string]: DailyUserStats }
+	userDailyResume: Record<string, DailyUserStats>
 }) {
 	const { dictionary } = useDictionary()
 	const searchParams = useSearchParams()
@@ -45,10 +45,8 @@ export function DiaryTimeline({
 	const groupedEntries = filteredEntries.reduce(
 		(groups, entry) => {
 			const date = format(entry.createdAt, 'MMMM do, yyyy')
-			if (!groups[date]) {
-				groups[date] = []
-			}
-			groups[date]?.push(entry)
+			const bucket = (groups[date] ??= [])
+			bucket.push(entry)
 			return groups
 		},
 		{} as Record<string, DiaryEntry[]>
@@ -84,7 +82,7 @@ export function DiaryTimeline({
 							selectedEntries.includes('exercise')) && (
 							<div className='pt-2'>
 								<DailySummary
-									daySummary={userDailyResume[date] as DailyUserStats}
+									daySummary={userDailyResume[date]!}
 									filter={selectedEntries}
 								/>
 							</div>

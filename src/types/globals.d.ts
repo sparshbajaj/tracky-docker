@@ -1,6 +1,11 @@
 export {}
 
-import { TrakedField, Goal, ActivityLevel, Sex } from './index'
+import {
+	type TrakedField,
+	type Goal,
+	type ActivityLevel,
+	type Sex
+} from './index'
 
 declare global {
 	interface CustomJwtSessionClaims {

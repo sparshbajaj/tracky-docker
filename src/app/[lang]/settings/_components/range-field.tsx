@@ -4,7 +4,7 @@ import React from 'react'
 import { Button } from '~/components/ui/button'
 import { Progress } from '~/components/ui/progress'
 import { Slider } from '~/components/ui/slider'
-import { SettingsAttr } from '~/types'
+import { type SettingsAttr } from '~/types'
 import { useDictionary } from '~/components/providers/dictionary-provider'
 
 export function RangeField({ attr }: { attr: SettingsAttr }) {

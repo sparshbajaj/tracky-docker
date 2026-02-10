@@ -79,7 +79,7 @@ export default clerkMiddleware(async (auth, req: NextRequest) => {
 	const pathnameLocale = getLocaleFromPathname(pathname)
 	const detectedLocale = getLocale(req)
 
-	let locale = pathnameLocale || i18n.defaultLocale
+	let locale = pathnameLocale ?? i18n.defaultLocale
 	const pathnameWithoutLocale = getPathnameWithoutLocale(pathname)
 
 	if (pathnameLocale === i18n.defaultLocale) {

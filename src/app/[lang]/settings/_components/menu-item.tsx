@@ -8,7 +8,7 @@ import {
 	DialogTitle,
 	DialogTrigger
 } from '~/components/ui/dialog'
-import { AboutMenuItem, Sex } from '~/types'
+import { type AboutMenuItem, type Sex } from '~/types'
 import { SettingsField } from './settings-field'
 import React from 'react'
 import { format } from 'date-fns'
@@ -47,12 +47,13 @@ export function MenuItem({ name, label, attr }: AboutMenuItem) {
 	const router = useRouter()
 	const { dictionary } = useDictionary()
 
-	let displayValue = value.toString()
+	let displayValue = String(value)
 	if (attr.name === 'born') displayValue = format(value, 'PP')
 	if (attr.name === 'height') displayValue = formatHeight(value as number)
 	if (attr.name === 'weights' || name === 'goalWeight')
-		displayValue = `${value} kg`
-	if (attr.name === 'fat' || name === 'progress') displayValue = `${value}%`
+		displayValue = `${Number(value)} kg`
+	if (attr.name === 'fat' || name === 'progress')
+		displayValue = `${Number(value)}%`
 	// Use optionLabels for translated display values
 	if (
 		attr.optionLabels &&
@@ -72,15 +73,11 @@ export function MenuItem({ name, label, attr }: AboutMenuItem) {
 		let result
 		if (attr.name === 'sex') {
 			result = await updatePublicMetadata({ sex: newValue as Sex })
-		}
-
-		if (attr.name === 'born') {
+		} else if (attr.name === 'born') {
 			result = await updatePublicMetadata({
-				born: format(newValue, 'yyyy-MM-dd')
+				born: format(newValue as Date, 'yyyy-MM-dd')
 			})
-		}
-
-		if (attr.name !== 'sex' && attr.name !== 'born') {
+		} else {
 			result = await updatePublicMetadata({
 				[attr.name]: [
 					{
@@ -108,7 +105,9 @@ export function MenuItem({ name, label, attr }: AboutMenuItem) {
 					variant='outline'
 					className='h-auto w-full justify-start px-4 py-4'
 					onClick={() => {
-						if (name !== 'born') setIsOpen(true)
+						if (name !== 'born') {
+							setIsOpen(true)
+						}
 					}}
 				>
 					<Icon className='mr-2 h-5 w-5' />
@@ -129,7 +128,15 @@ export function MenuItem({ name, label, attr }: AboutMenuItem) {
 				<DialogHeader>
 					<DialogTitle>{label}</DialogTitle>
 				</DialogHeader>
-				<SettingsField attr={{ ...attr, value, updateValue }} />
+				<SettingsField
+					attr={{
+						...attr,
+						value,
+						updateValue: nextValue => {
+							void updateValue(nextValue)
+						}
+					}}
+				/>
 			</DialogContent>
 		</Dialog>
 	)

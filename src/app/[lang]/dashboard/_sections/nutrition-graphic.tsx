@@ -5,7 +5,7 @@ import React from 'react'
 import { Button } from '~/components/ui/button'
 import { Card } from '~/components/ui/card'
 import { round, calculateAdjustedDay } from '~/lib/calculations'
-import { NutritionMetrics, NutritionMetricsPerDay } from '~/types'
+import { type NutritionMetrics, type NutritionMetricsPerDay } from '~/types'
 import { NutritionSquare } from '../_components/analytics/nutrition-square'
 import { useDictionary } from '~/components/providers/dictionary-provider'
 
@@ -18,9 +18,7 @@ export default function NutritionGraphic({
 	const [showConsumed, setShowConsumed] = React.useState(true)
 
 	const dayOfWeek = calculateAdjustedDay(new Date())
-	const { calories, protein, fats, carbs } = nutrition[
-		dayOfWeek as keyof NutritionMetricsPerDay
-	] as NutritionMetrics
+	const { calories, protein, fats, carbs } = nutrition[dayOfWeek]!
 
 	const days = ['M', 'T', 'W', 'T', 'F', 'S', 'S']
 	function getNutrientPercentage(index: number, day: number) {
@@ -81,12 +79,12 @@ export default function NutritionGraphic({
 			</h2>
 			<div className='mb-2 grid grid-cols-10 space-x-1 sm:space-x-5 lg:space-x-3 xl:space-x-5'>
 				<div className='col-span-8 grid grid-flow-row space-y-2'>
-					{[...Array(5)].map((_, nutrientIndex) => (
+					{Array.from({ length: 5 }).map((_, nutrientIndex) => (
 						<div
 							className={`flex pb-2 ${nutrientIndex === 4 ? 'space-x-1 sm:space-x-4 lg:space-x-1 xl:space-x-4' : 'space-x-2 sm:space-x-5 lg:space-x-2 xl:space-x-5'}`}
 							key={nutrientIndex}
 						>
-							{[...Array(7)].map((_, dayIndex) => (
+							{Array.from({ length: 7 }).map((_, dayIndex) => (
 								<NutritionSquare
 									key={dayIndex}
 									dayIndex={dayIndex}

@@ -1,7 +1,7 @@
 import { Circle, Square } from 'lucide-react'
 import InsightsCard from '../_components/analytics/insights-card'
 import ResumeStreak from '../_components/analytics/resume-streak'
-import { User } from '@clerk/nextjs/server'
+import { type User } from '@clerk/nextjs/server'
 import { DataAndHabitsSkeleton } from '../_components/skeletons'
 import { db } from '~/server/db'
 import { consumption, food } from '~/server/db/schema'

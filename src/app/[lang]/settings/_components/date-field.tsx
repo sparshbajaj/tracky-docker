@@ -11,7 +11,7 @@ import {
 	PopoverTrigger
 } from '~/components/ui/popover'
 import { cn } from '~/lib/utils'
-import { SettingsAttr } from '~/types'
+import { type SettingsAttr } from '~/types'
 import { useDictionary } from '~/components/providers/dictionary-provider'
 
 export function DateField({ attr }: { attr: SettingsAttr }) {

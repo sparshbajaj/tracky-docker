@@ -1,5 +1,5 @@
 import { Header } from '~/app/[lang]/exercise/_sections/header'
-import { Metadata } from 'next'
+import { type Metadata } from 'next'
 import { Suspense } from 'react'
 import {
 	ExerciseMetricsSkeleton,

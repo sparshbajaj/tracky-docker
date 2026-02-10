@@ -1,4 +1,4 @@
-import { Metadata } from 'next'
+import { type Metadata } from 'next'
 import { Suspense } from 'react'
 import { DiaryTimelineSkeletonUI } from './_components/skeletons'
 import { DiaryTimelineData } from './_components/diary-timeline-data'

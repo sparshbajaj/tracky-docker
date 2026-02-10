@@ -1,7 +1,7 @@
 'use client'
 
-import Dexie, { Table } from 'dexie'
-import { SuccessLogData } from '~/types'
+import Dexie, { type Table } from 'dexie'
+import { type SuccessLogData } from '~/types'
 
 const STORAGE_LIMIT_BYTES = 50 * 1024 * 1024
 const encoder = new TextEncoder()
@@ -85,4 +85,3 @@ export const clearMessages = async () => {
 	await db.messages.clear()
 	return { usageBytes: 0 }
 }
-

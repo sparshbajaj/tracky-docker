@@ -1,5 +1,5 @@
-import { daysOfWeek } from '~/constants'
-import { diaryGroupEnum, exerciseCategory } from '~/server/db/schema'
+import { type daysOfWeek } from '~/constants'
+import { type diaryGroupEnum, type exerciseCategory } from '~/server/db/schema'
 
 export type Sex = 'male' | 'female'
 export type Goal = 'gain' | 'maintain' | 'lose'
@@ -36,7 +36,7 @@ export interface DailyUserStats extends NutritionMetrics {
 	}
 }
 
-export type NutritionMetricsPerDay = { [key: number]: NutritionMetrics }
+export type NutritionMetricsPerDay = Record<number, NutritionMetrics>
 
 export interface WeeklyNutrition {
 	name: string
@@ -82,7 +82,7 @@ export interface SuccessLogData {
 	subTitle: string
 	subTitleUnit?: string
 	items: {
-		name: 'Calories' | 'Protein' | 'Carbs' | 'Fats' | string
+		name: string
 		amount: string
 		unit?: string
 	}[]

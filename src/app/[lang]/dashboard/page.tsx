@@ -1,6 +1,6 @@
 import FoodDialog from './_components/food/food-dialog'
 import ExerciseDialog from './_components/exercise/exercise-dialog'
-import { Metadata } from 'next'
+import { type Metadata } from 'next'
 import Footer from '~/components/layout/footer'
 import { Suspense } from 'react'
 import { DashboardDataSkeleton } from './_components/skeletons'

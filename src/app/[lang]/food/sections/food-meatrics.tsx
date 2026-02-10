@@ -7,7 +7,7 @@ import { NutritionCards } from './nutrition-cards'
 import { Suspense } from 'react'
 import { NutritionGraphicData } from '../_components/nutrition-graphic-data'
 import { connection } from 'next/server'
-import { Locale } from '~/i18n-config'
+import { type Locale } from '~/i18n-config'
 
 export async function FoodMeatrics({ lang }: { lang: Locale }) {
 	await connection()

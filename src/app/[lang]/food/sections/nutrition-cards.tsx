@@ -1,9 +1,9 @@
 import { NutritionCard } from '../_components/nutrition-card'
-import { User } from '@clerk/nextjs/server'
+import { type User } from '@clerk/nextjs/server'
 import { getTodayNutritionMetrics } from '~/server/utils/nutrition'
 import { NutritionCardsSkeleton } from '../_components/skeletons'
 import { getDictionary } from '~/get-dictionary'
-import { Locale } from '~/i18n-config'
+import { type Locale } from '~/i18n-config'
 
 export async function NutritionCards({
 	user: currentUser,
@@ -19,7 +19,7 @@ export async function NutritionCards({
 		getDictionary(lang)
 	])
 
-	const nutritionLabels: { [key: string]: string } = {
+	const nutritionLabels: Record<string, string> = {
 		calories: dictionary.common.nutrition.calories,
 		protein: dictionary.common.nutrition.protein,
 		carbs: dictionary.common.nutrition.carbs,
@@ -28,11 +28,18 @@ export async function NutritionCards({
 
 	return (
 		<div className='mb-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4'>
-			{Object.entries(nutrition).map(([key, value]) => (
+			{(
+				Object.entries(nutrition) as Array<
+					[
+						keyof typeof nutritionLabels,
+						(typeof nutrition)[keyof typeof nutrition]
+					]
+				>
+			).map(([key, value]) => (
 				<NutritionCard
 					key={key}
 					nutrient={value}
-					name={nutritionLabels[key] || key}
+					name={nutritionLabels[key] ?? key}
 					iconKey={key}
 					ofDailyGoalLabel={dictionary.food.card.ofDailyGoal}
 				/>

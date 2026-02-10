@@ -8,10 +8,10 @@ import {
 } from '~/server/db/schema'
 import { eq, and, desc } from 'drizzle-orm'
 import { currentUser } from '@clerk/nextjs/server'
-import { DiaryEntry } from '~/types/diary'
+import { type DiaryEntry } from '~/types/diary'
 import { DiaryTimelineSkeletonUI } from './skeletons'
 import { format } from 'date-fns'
-import { DailyUserStats } from '~/types'
+import { type DailyUserStats } from '~/types'
 import { computeDailyUserStats } from '~/lib/calculations'
 import { formatHeight } from '~/lib/utils'
 import { getDictionary } from '~/get-dictionary'
@@ -78,7 +78,7 @@ export async function DiaryTimelineData({ lang }: { lang?: Locale }) {
 		fetchFood
 	])
 
-	const userDailyResume: { [key: string]: DailyUserStats } = {}
+	const userDailyResume: Record<string, DailyUserStats> = {}
 	const entryMeals: DiaryEntry[] = meals.map(
 		({
 			portion,

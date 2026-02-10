@@ -1,9 +1,9 @@
-import { EFFORT_LEVELS } from '~/constants'
+import { type EFFORT_LEVELS } from '~/constants'
 import { db } from '..'
 import {
 	consumption,
-	unitEnum,
-	diaryGroupEnum,
+	type unitEnum,
+	type diaryGroupEnum,
 	exercise,
 	food,
 	exerciseCategory
@@ -166,9 +166,7 @@ export async function seedUserEntries() {
 			const createdAt = new Date(
 				initialDate.getTime() + i * 24 * 60 * 60 * 1000
 			)
-			const exercise = exercises[
-				Math.floor(Math.random() * 3)
-			] as (typeof exercises)[number]
+			const exercise = exercises[Math.floor(Math.random() * 3)]!
 			const energyBurned = (
 				Number(exercise.energyBurned) +
 				Number(exercise.energyBurned) * (Math.random() * 0.3)

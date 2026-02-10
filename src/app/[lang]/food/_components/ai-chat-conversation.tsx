@@ -34,7 +34,7 @@ import type {
 	PersistedMessage
 } from '~/app/ai/types'
 import {
-	ChatMessageRecord,
+	type ChatMessageRecord,
 	clearMessages,
 	loadMessages,
 	saveMessage,
@@ -311,7 +311,8 @@ export default function AIChatConversation({
 		new Promise<string>((resolve, reject) => {
 			const reader = new FileReader()
 			reader.onload = () => resolve(reader.result as string)
-			reader.onerror = () => reject(reader.error)
+			reader.onerror = () =>
+				reject(reader.error ?? new Error('Failed to read file'))
 			reader.readAsDataURL(file)
 		})
 
@@ -443,7 +444,7 @@ export default function AIChatConversation({
 		const fileItem = Array.from(items).find(item => item.kind === 'file')
 		if (!fileItem) return
 		const file = fileItem.getAsFile()
-		if (!file || !file.type.startsWith('image/')) return
+		if (!file?.type.startsWith('image/')) return
 		await handleFileUpload(file, dictionary.aiChat.entryImage)
 	}
 

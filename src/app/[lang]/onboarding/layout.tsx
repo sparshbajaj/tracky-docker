@@ -1,6 +1,6 @@
 import { auth } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
-import { Metadata } from 'next'
+import { type Metadata } from 'next'
 import Footer from '~/components/layout/footer'
 import { env } from '~/env'
 

@@ -4,7 +4,7 @@ import {
 	GOAL_FACTORS,
 	MACRO_DISTRIBUTION
 } from '~/constants'
-import { DailyUserStats, NutritionMetrics } from '~/types'
+import { type DailyUserStats, type NutritionMetrics } from '~/types'
 
 export function calculateBodyFat({
 	sex,
@@ -35,9 +35,9 @@ export function calculateGoalProgress({
 	weights,
 	goalWeight
 }: UserPublicMetadata) {
-	const initialWeight = weights[0]?.value || 0
-	const currentWeight = weights[weights.length - 1]?.value || 0
-	const currentGoalWeight = goalWeight[goalWeight.length - 1]?.value || 0
+	const initialWeight = weights[0]?.value ?? 0
+	const currentWeight = weights[weights.length - 1]?.value ?? 0
+	const currentGoalWeight = goalWeight[goalWeight.length - 1]?.value ?? 0
 
 	if (initialWeight > currentGoalWeight) {
 		const progress =

@@ -73,7 +73,7 @@ export async function SettingItems({ dictionary }: SettingItemsProps) {
 							options: Object.keys(ACTIVITY_LEVELS),
 							value:
 								userMetadata.activity[userMetadata.activity.length - 1]
-									?.value || 'sedentary'
+									?.value ?? 'sedentary'
 						}}
 					/>
 
@@ -86,7 +86,7 @@ export async function SettingItems({ dictionary }: SettingItemsProps) {
 							type: 'number',
 							placeholder: t.placeholders.enterHeight,
 							value:
-								userMetadata.height[userMetadata.height.length - 1]?.value || 0
+								userMetadata.height[userMetadata.height.length - 1]?.value ?? 0
 						}}
 					/>
 					<MenuItem
@@ -111,7 +111,7 @@ export async function SettingItems({ dictionary }: SettingItemsProps) {
 							min: 0,
 							max: 50,
 							value: round(
-								userMetadata.fat[userMetadata.fat.length - 1]?.value ||
+								userMetadata.fat[userMetadata.fat.length - 1]?.value ??
 									calculateBodyFat(userMetadata),
 								1
 							)
@@ -137,7 +137,7 @@ export async function SettingItems({ dictionary }: SettingItemsProps) {
 								lose: t.goalOptions.lose,
 								gain: t.goalOptions.gain
 							},
-							value: userMetadata.goal[userMetadata.goal.length - 1]?.value || 0
+							value: userMetadata.goal[userMetadata.goal.length - 1]?.value ?? 0
 						}}
 					/>
 					<MenuItem
@@ -150,7 +150,7 @@ export async function SettingItems({ dictionary }: SettingItemsProps) {
 							placeholder: t.placeholders.enterGoalWeight,
 							value:
 								userMetadata.goalWeight[userMetadata.goalWeight.length - 1]
-									?.value || 0
+									?.value ?? 0
 						}}
 					/>
 					<MenuItem

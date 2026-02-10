@@ -23,12 +23,12 @@ import {
 	YAxis
 } from 'recharts'
 import {
-	ChartConfig,
+	type ChartConfig,
 	ChartContainer,
 	ChartTooltip,
 	ChartTooltipContent
 } from '~/components/ui/chart'
-import { ExerciseGraphicsData, TimeCategory } from '~/types'
+import { type ExerciseGraphicsData } from '~/types'
 import { DAILY_MEAL_ICONS } from '~/constants'
 import { calculateNeededCalories } from '~/lib/calculations'
 import { useDictionary } from '~/components/providers/dictionary-provider'
@@ -63,7 +63,7 @@ export function ExerciseGraphics({
 	}
 
 	const exerciseCategories = Object.keys(
-		exerciseData.exerciseFrequency[0] || {}
+		exerciseData.exerciseFrequency[0] ?? {}
 	).filter(key => key !== 'date')
 	const exerciseFrequencyConfig = [...exerciseCategories].reduce(
 		(acc, key, index) => {
@@ -79,7 +79,7 @@ export function ExerciseGraphics({
 	const topSessionCategory = exerciseData.timeCategories
 		.slice()
 		.sort((a, b) => b.sessions - a.sessions)
-		.at(0) as TimeCategory
+		.at(0)!
 
 	const totalWeeklyCalories = exerciseData.weeklyEnergyBurned.reduce(
 		(sum, day) => sum + (day.value || 0),
@@ -239,7 +239,7 @@ export function ExerciseGraphics({
 									tickLine={false}
 									axisLine={false}
 									tickMargin={8}
-									tickFormatter={value =>
+									tickFormatter={(value: string | number | Date) =>
 										new Date(value).toLocaleDateString(dateLocale, {
 											month: 'short',
 											day: 'numeric'
@@ -260,7 +260,7 @@ export function ExerciseGraphics({
 								<defs>
 									{exerciseCategories.map(category => (
 										<linearGradient
-											id='fillGym'
+											id={`fill-${category}`}
 											x1='0'
 											y1='0'
 											x2='0'

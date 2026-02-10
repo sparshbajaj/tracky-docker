@@ -1,7 +1,7 @@
 import { Drumstick, EggFried, Flame, Wheat } from 'lucide-react'
 import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card'
 import { calculatePercentage, round } from '~/lib/calculations'
-import { NutritionMetrics } from '~/types'
+import { type NutritionMetrics } from '~/types'
 
 export function NutritionCard({
 	nutrient,
@@ -14,14 +14,14 @@ export function NutritionCard({
 	iconKey: string
 	ofDailyGoalLabel: string
 }) {
-	const nutritionIcons: { [nutrient: string]: typeof Flame } = {
+	const nutritionIcons: Record<string, typeof Flame> = {
 		calories: Flame,
 		protein: Drumstick,
 		fats: EggFried,
 		carbs: Wheat
 	}
 
-	const Icon = nutritionIcons[iconKey] as typeof Flame
+	const Icon = nutritionIcons[iconKey]!
 
 	return (
 		<Card className='transition-shadow hover:shadow-lg dark:bg-slate-800/50'>

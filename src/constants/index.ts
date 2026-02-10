@@ -68,9 +68,10 @@ export const UNITS_MAP = {
 	cup: 'cup'
 }
 
-export const EXERCISE_ICONS: {
-	[key: string]: React.FC<React.SVGProps<SVGSVGElement>>
-} = {
+export const EXERCISE_ICONS: Record<
+	string,
+	React.FC<React.SVGProps<SVGSVGElement>>
+> = {
 	Gym: Gym,
 	Cardio: Treadmill,
 	'Household Activity': Cleaner,

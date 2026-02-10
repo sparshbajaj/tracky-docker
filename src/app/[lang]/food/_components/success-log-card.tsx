@@ -2,7 +2,7 @@
 
 import { Card, CardContent } from '~/components/ui/card'
 import { CheckCircle } from 'lucide-react'
-import { SuccessLogData } from '~/types'
+import { type SuccessLogData } from '~/types'
 
 const colors = ['#3b82f6', '#22c55e', '#eab308']
 
@@ -14,7 +14,7 @@ export function SuccessLogCard({
 	subTitleUnit
 }: SuccessLogData) {
 	return (
-		<Card className='mx-auto w-full max-w-md overflow-hidden rounded-xl border-green-200 bg-green-50 shadow-lg my-4'>
+		<Card className='mx-auto my-4 w-full max-w-md overflow-hidden rounded-xl border-green-200 bg-green-50 shadow-lg'>
 			<CardContent className='p-4'>
 				<div className='mb-4 flex items-center justify-between'>
 					<div className='flex items-center'>
@@ -23,7 +23,9 @@ export function SuccessLogCard({
 					</div>
 				</div>
 				<div className='flex items-center justify-between'>
-					<h3 className='mb-1 text-lg font-semibold text-gray-800 capitalize'>{title}</h3>
+					<h3 className='mb-1 text-lg font-semibold capitalize text-gray-800'>
+						{title}
+					</h3>
 					<div className='flex items-baseline'>
 						<span className='text-2xl font-bold capitalize text-gray-900'>
 							{subTitle}

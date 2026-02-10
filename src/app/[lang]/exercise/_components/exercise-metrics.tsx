@@ -11,7 +11,7 @@ import {
 } from './skeletons'
 import { ExerciseGraphicsData } from './exercise-graphics-data'
 import { getDictionary } from '~/get-dictionary'
-import { Locale } from '~/i18n-config'
+import { type Locale } from '~/i18n-config'
 
 export async function ExerciseMetrics({ lang }: { lang: Locale }) {
 	const user = await currentUser()
@@ -45,7 +45,10 @@ export async function ExerciseMetrics({ lang }: { lang: Locale }) {
 	return (
 		<>
 			<Suspense fallback={<ExerciseCardSkeleton />}>
-				<ExerciseCards exercises={Promise.resolve(exercises)} labels={exerciseCardsLabels} />
+				<ExerciseCards
+					exercises={Promise.resolve(exercises)}
+					labels={exerciseCardsLabels}
+				/>
 			</Suspense>
 			<Suspense fallback={<ExerciseGraphicsSkeleton />}>
 				<ExerciseGraphicsData

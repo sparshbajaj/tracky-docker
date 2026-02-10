@@ -4,7 +4,7 @@ import { addDays, format, startOfWeek } from 'date-fns'
 import { daysOfWeek } from '~/constants'
 import { calculateAdjustedDay } from '~/lib/calculations'
 import { diaryGroupEnum } from '~/server/db/schema'
-import { ExerciseCall, ExerciseGraphicsData as Data } from '~/types'
+import { type ExerciseCall, type ExerciseGraphicsData as Data } from '~/types'
 import { ExerciseGraphics } from '../_sections/exercise-graphics'
 
 export async function ExerciseGraphicsData({
@@ -38,10 +38,7 @@ export async function ExerciseGraphicsData({
 
 	for (const exercise of exercises) {
 		const exerciseDay = calculateAdjustedDay(exercise.createdAt)
-		if (
-			exerciseGraphicsData.weeklyEnergyBurned &&
-			exerciseGraphicsData.weeklyEnergyBurned[exerciseDay]
-		) {
+		if (exerciseGraphicsData.weeklyEnergyBurned?.[exerciseDay]) {
 			exerciseGraphicsData.weeklyEnergyBurned[exerciseDay]!.value += Number(
 				exercise.burned
 			)

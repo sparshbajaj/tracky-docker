@@ -44,7 +44,7 @@
 			"dashboard": "Panel",
 			"contact": "Contacto",
 			"homePageTitle": "Página de inicio",
-			"dashboardPageTitle": "Página del panel",
+			"dashboardPageTitle": "Página de inicio",
 			"contactTitle": "Contactar desarrollador"
 		},
 		"meals": {
@@ -95,7 +95,7 @@
 			"tagline": "Sigue tu viaje fitness, paso a paso",
 			"starOnGithub": "Estrella en GitHub",
 			"getStarted": "Comenzar",
-			"dashboard": "Panel"
+			"dashboard": "Inicio"
 		},
 		"chart": {
 			"title": "Resumen Nutricional de Hoy",
@@ -119,7 +119,7 @@
 		"or": "o"
 	},
 	"dashboard": {
-		"title": "Panel",
+		"title": "Inicio",
 		"chatWithAI": "Chat con IA",
 		"aiChatPlaceholder": "Registra 2 huevos para el desayuno o 30 min de carrera",
 		"aiChatInstruction": "Especifica las porciones para comida o duraci\u00f3n y esfuerzo para ejercicios. Se admiten im\u00e1genes.",

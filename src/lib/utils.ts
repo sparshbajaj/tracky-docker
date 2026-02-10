@@ -1,4 +1,4 @@
-import clsx, { ClassValue } from 'clsx'
+import clsx, { type ClassValue } from 'clsx'
 import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
@@ -24,7 +24,9 @@ export function formatNumber(value: number): string {
 	return value.toFixed()
 }
 
-export function getMealCategoryFromTime(date: Date): 'breakfast' | 'lunch' | 'snack' | 'dinner' {
+export function getMealCategoryFromTime(
+	date: Date
+): 'breakfast' | 'lunch' | 'snack' | 'dinner' {
 	const hours = date.getHours()
 	const minutes = date.getMinutes()
 	const totalMinutes = hours * 60 + minutes

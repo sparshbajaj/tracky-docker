@@ -9,7 +9,7 @@ import {
 	TooltipTrigger
 } from '~/components/ui/tooltip'
 import { round } from '~/lib/calculations'
-import { NutritionMetrics } from '~/types'
+import { type NutritionMetrics } from '~/types'
 import { useDictionary } from '~/components/providers/dictionary-provider'
 
 export function NutritionSquare({

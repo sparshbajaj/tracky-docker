@@ -1,6 +1,6 @@
 'use client'
 
-import { DiaryEntry } from '~/types/diary'
+import { type DiaryEntry } from '~/types/diary'
 import {
 	Dumbbell,
 	BookOpen,

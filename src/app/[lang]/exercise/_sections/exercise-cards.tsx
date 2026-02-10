@@ -8,7 +8,7 @@ import {
 	round
 } from '~/lib/calculations'
 import { formatNumber } from '~/lib/utils'
-import { ExerciseMetricsData, ExerciseCall } from '~/types'
+import { type ExerciseMetricsData, type ExerciseCall } from '~/types'
 
 interface ExerciseCardsLabels {
 	totalEnergyBurned: string

@@ -1,7 +1,7 @@
 import { Circle, Square } from 'lucide-react'
 import { Progress } from '~/components/ui/progress'
 import InsightsCard from '../_components/analytics/insights-card'
-import { User } from '@clerk/nextjs/server'
+import { type User } from '@clerk/nextjs/server'
 import { InsightsAndAnaliticsSkeleton } from '../_components/skeletons'
 import { db } from '~/server/db'
 import { exercise } from '~/server/db/schema'
@@ -32,7 +32,7 @@ export default async function InsightsAndAnalitics({
 	const dateLocale = locale === 'es' ? 'es-ES' : 'en-US'
 	const dateFnsLocale = locale === 'es' ? es : enUS
 
-	let goalProgress: number = 0
+	let goalProgress = 0
 
 	if (currentGoal === 'maintain') {
 		if (currentWeight === currentGoalWeight) goalProgress = 100

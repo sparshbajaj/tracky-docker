@@ -2,11 +2,11 @@
 
 import * as React from 'react'
 import {
-	ColumnDef,
-	PaginationState,
-	Row,
-	SortingState,
-	VisibilityState,
+	type ColumnDef,
+	type PaginationState,
+	type Row,
+	type SortingState,
+	type VisibilityState,
 	flexRender,
 	getCoreRowModel,
 	getPaginationRowModel,
@@ -34,7 +34,7 @@ import {
 import { FoodDrawer } from '~/app/[lang]/dashboard/_components/food/food-drawer'
 import { Drawer, DrawerTrigger } from './drawer'
 import {
-	Food,
+	type Food,
 	createColumns
 } from '~/app/[lang]/dashboard/_components/food/columns'
 import { DialogClose } from './dialog'

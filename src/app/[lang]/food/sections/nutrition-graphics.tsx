@@ -14,10 +14,9 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from '~/components/ui/card'
 import { CustomTooltip } from '../_components/custom-tooltip'
 import {
-	NutritionMetrics,
-	NutritionMetricsPerDay,
-	WeeklyNutrition,
-	TrakedField
+	type NutritionMetricsPerDay,
+	type WeeklyNutrition,
+	type TrakedField
 } from '~/types'
 import {
 	calculateAdjustedDay,
@@ -52,7 +51,7 @@ export default function NutritionGraphic({
 	)
 
 	const weekDay = calculateAdjustedDay(new Date())
-	const todayNutrition = nutrition[weekDay] as NutritionMetrics
+	const todayNutrition = nutrition[weekDay]!
 	const todayGoalData = [
 		{
 			name: dictionary.common.nutrition.calories,
@@ -253,7 +252,9 @@ export default function NutritionGraphic({
 									fontSize={12}
 									tickLine={false}
 									axisLine={false}
-									tickFormatter={value => `${value} ${dictionary.common.units.kg}`}
+									tickFormatter={value =>
+										`${value} ${dictionary.common.units.kg}`
+									}
 								/>
 								<Tooltip content={<CustomTooltip />} />
 								<Line

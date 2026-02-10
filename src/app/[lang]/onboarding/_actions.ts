@@ -70,13 +70,13 @@ export const completeOnboarding = async (formData: FormData) => {
 	if (validatedFields.data.heightUnit != 'ft') {
 		const heightMt =
 			Number(
-				`${validatedFields.data.height}.${validatedFields.data.heightDecimal || 1}`
+				`${validatedFields.data.height}.${validatedFields.data.heightDecimal ?? 1}`
 			) / (validatedFields.data.heightUnit === 'cm' ? 100 : 1)
 
 		validatedFields.data.height = round(heightMt * 3.28084, 2)
 	} else {
 		validatedFields.data.height = Number(
-			`${validatedFields.data.height}.${validatedFields.data.heightDecimal || 1}`
+			`${validatedFields.data.height}.${validatedFields.data.heightDecimal ?? 1}`
 		)
 	}
 
@@ -87,7 +87,7 @@ export const completeOnboarding = async (formData: FormData) => {
 	}
 
 	try {
-		const date = new Date().toISOString().split('T')[0] as string
+		const date = new Date().toISOString().split('T')[0]!
 		const publicMetadata: UserPublicMetadata = {
 			onboardingCompleted: true,
 			sex: validatedFields.data.sex,
@@ -124,8 +124,8 @@ export const completeOnboarding = async (formData: FormData) => {
 					date
 				}
 			],
-			born: validatedFields.data.born.toISOString().split('T')[0] as string,
-			updatedAt: new Date().toISOString().split('T')[0] as string,
+			born: validatedFields.data.born.toISOString().split('T')[0]!,
+			updatedAt: new Date().toISOString().split('T')[0]!,
 			fat: [{ value: 0, date }]
 		}
 

@@ -89,7 +89,7 @@ export default function BodyMetrics({
 									<SelectTrigger
 										className={`${height.unit === 'cm' ? 'w-[180px]' : 'w-[80px]'} border-gray-400`}
 									>
-										<SelectValue placeholder={height.toString()} />
+										<SelectValue placeholder={height.value.toString()} />
 									</SelectTrigger>
 									<SelectContent>
 										<SelectGroup>

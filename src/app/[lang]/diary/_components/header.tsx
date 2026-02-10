@@ -10,7 +10,7 @@ import {
 	SelectTrigger,
 	SelectValue
 } from '~/components/ui/select'
-import { EntryType } from '~/types/diary'
+import { type EntryType } from '~/types/diary'
 import { useDictionary } from '~/components/providers/dictionary-provider'
 
 export function Header({

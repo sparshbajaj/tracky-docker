@@ -1,6 +1,6 @@
 'use client'
 import { useTheme } from 'next-themes'
-import { Toaster as SonnerToaster, ToasterProps } from 'sonner'
+import { Toaster as SonnerToaster, type ToasterProps } from 'sonner'
 
 export default function Toaster(props: ToasterProps) {
 	const { theme } = useTheme()

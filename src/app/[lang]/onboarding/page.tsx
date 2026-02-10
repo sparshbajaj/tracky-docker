@@ -9,7 +9,7 @@ import BodyMetrics from './_components/body-metrics'
 import FitnessGoals from './_components/fitness-goals'
 import { useRef, useState } from 'react'
 import { ONBOARDING_SECTIONS } from '~/constants'
-import { Sex } from '~/types'
+import { type Sex } from '~/types'
 import confetti from 'canvas-confetti'
 import { useDictionary } from '~/components/providers/dictionary-provider'
 
@@ -62,7 +62,7 @@ export default function OnboardingPage() {
 			toast.dismiss('onboarding-form')
 			toast.success(dictionary.toast.success.onboardingComplete)
 			router.push('/dashboard')
-		} catch (error) {
+		} catch {
 			toast.dismiss('onboarding-form')
 			toast.error(dictionary.common.error)
 		}

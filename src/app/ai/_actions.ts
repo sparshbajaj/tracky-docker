@@ -24,7 +24,7 @@ import { getMealCategoryFromTime } from '~/lib/utils'
 import { calculateEnergyBurned } from '~/lib/calculations'
 import { desc, ilike } from 'drizzle-orm'
 import { revalidatePath, updateTag } from 'next/cache'
-import { SuccessLogData, TrakedField } from '~/types'
+import { type SuccessLogData, type TrakedField } from '~/types'
 import { EXERCISE_ICONS } from '~/constants'
 import type { DescribeImageInput, Message } from './types'
 
@@ -172,7 +172,7 @@ const portionLookupTable = [
 ]
 
 const detectQuantityMultiplier = (text: string) => {
-	const numeric = text.match(/(\d+(\.\d+)?)/)
+	const numeric = /(\d+(\.\d+)?)/.exec(text)
 	if (numeric?.[1]) {
 		const value = parseFloat(numeric[1])
 		if (!Number.isNaN(value) && value > 0) return value

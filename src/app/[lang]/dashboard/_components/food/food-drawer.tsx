@@ -10,7 +10,7 @@ import {
 	DrawerHeader,
 	DrawerTitle
 } from '~/components/ui/drawer'
-import { Food } from './columns'
+import { type Food } from './columns'
 import { Card } from '~/components/ui/card'
 import { Label } from '~/components/ui/label'
 import {
@@ -22,7 +22,7 @@ import {
 } from '~/components/ui/select'
 import { Input } from '~/components/ui/input'
 import { toast } from 'sonner'
-import { ConsumptionState, addConsumption } from '../../_actions'
+import { type ConsumptionState, addConsumption } from '../../_actions'
 import FoodCardItem from './food-card'
 import { ShowErrors } from '~/components/forms/show-errors'
 import { useDictionary } from '~/components/providers/dictionary-provider'
@@ -102,7 +102,7 @@ export function FoodDrawer({
 			<div className='mx-auto w-full max-w-xl'>
 				<DrawerHeader>
 					<DrawerTitle className='text-center'>{foodData.name}</DrawerTitle>
-					{state && state.message && !state.success && (
+					{state?.message && !state.success && (
 						<DrawerDescription className='text-center text-red-500'>
 							{state.message}
 						</DrawerDescription>

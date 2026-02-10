@@ -1,5 +1,5 @@
 import { Header } from './sections/header'
-import { Metadata } from 'next'
+import { type Metadata } from 'next'
 import Footer from '~/components/layout/footer'
 import { Suspense } from 'react'
 import { FoodMeatricsSkeleton, HeaderSkeleton } from './_components/skeletons'

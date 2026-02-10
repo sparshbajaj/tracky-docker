@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { SettingItems } from './_sections/setting-items'
-import { Metadata } from 'next'
+import { type Metadata } from 'next'
 import { SettingItemsSkeletonUI } from './_components/skeletons'
 import Footer from '~/components/layout/footer'
 import { connection } from 'next/server'

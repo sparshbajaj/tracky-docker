@@ -11,7 +11,7 @@ import {
 	SelectTrigger,
 	SelectValue
 } from '~/components/ui/select'
-import { FoodState, registerFood } from '../_actions'
+import { type FoodState, registerFood } from '../_actions'
 import { ShowErrors } from '~/components/forms/show-errors'
 import { toast } from 'sonner'
 import React from 'react'
