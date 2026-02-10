@@ -1,9 +1,12 @@
+'use client'
+
 import ExternalLink from '~/components/ui/external-link'
 import { cn } from '~/lib/utils'
 import React from 'react'
 import { T3Logo, XLogo } from '~/components/ui/icons'
 import { ArrowUpRight, Heart } from 'lucide-react'
 import { About } from './about'
+import { useDictionary } from '../providers/dictionary-provider'
 
 export default function Footer({
 	className,
@@ -16,6 +19,8 @@ export default function Footer({
 	showMadeBy?: boolean
 	showAbout?: boolean
 }) {
+	const { dictionary } = useDictionary()
+
 	return (
 		<footer
 			className={cn(
@@ -36,7 +41,7 @@ export default function Footer({
 							href='https://fraineralex.dev'
 							className='flex items-center space-x-1'
 						>
-							<p>Made by fraineralex using</p>
+							<p>{dictionary.landing.footer.madeBy}</p>
 							<T3Logo className='h-4 w-4' />
 							<ArrowUpRight size={14} className='group-hover:scale-125' />
 						</ExternalLink>
@@ -50,7 +55,9 @@ export default function Footer({
 						href='https://twitter.com/fraineralex'
 						className='flex items-center space-x-1'
 					>
-						<p className='hidden md:block'>Twitter</p>
+						<p className='hidden md:block'>
+							{dictionary.landing.footer.twitter}
+						</p>
 						<ArrowUpRight size={14} className='group-hover:scale-125' />
 					</ExternalLink>
 				</div>

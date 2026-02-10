@@ -1,9 +1,17 @@
-export function Chart() {
+interface ChartProps {
+	dictionary: {
+		title: string
+		calories: string
+		fatLoss: string
+	}
+}
+
+export function Chart({ dictionary }: ChartProps) {
 	return (
 		<div className='flex flex-col rounded-xl border bg-background text-card-foreground shadow'>
 			<div className='flex flex-col items-center space-y-1.5 p-6 pb-0'>
 				<h3 className='font-semibold leading-none tracking-tight'>
-					Today&apos;s Nutrition Summary
+					{dictionary.title}
 				</h3>
 			</div>
 			<div className='-mt-3 flex-1 p-6 pb-0 pt-0'>
@@ -196,7 +204,7 @@ export function Chart() {
 											1,675
 										</tspan>
 										<tspan x='125' y='149' className='fill-muted-foreground'>
-											Calories
+											{dictionary.calories}
 										</tspan>
 									</text>
 								</g>
@@ -219,7 +227,7 @@ export function Chart() {
 			</div>
 			<div className='-mt-3 flex flex-col items-center gap-2 p-6 pt-0 text-sm'>
 				<div className='flex items-center gap-2 font-medium leading-none tracking-tight'>
-					You have lost 4.2 kg of fat this month
+					{dictionary.fatLoss}
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						width='24'

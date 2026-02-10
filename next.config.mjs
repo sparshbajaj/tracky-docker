@@ -6,8 +6,8 @@ await import('./src/env.js')
 
 /** @type {import("next").NextConfig} */
 const config = {
-	cacheComponents: true,
 	reactCompiler: true,
+	cacheComponents: true,
 	experimental: {
 		staleTimes: {
 			dynamic: 1440,

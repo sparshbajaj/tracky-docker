@@ -9,10 +9,7 @@ import {
 	calculateNutritionalNeeds
 } from '~/lib/calculations'
 import { NutritionMetricsPerDay } from '~/types'
-import {
-	cacheLife,
-	cacheTag
-} from 'next/cache'
+import { cacheLife, cacheTag } from 'next/cache'
 
 export async function getUserNutritionMetrics(
 	userId: string,

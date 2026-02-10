@@ -1,0 +1,480 @@
+{
+	"common": {
+		"save": "Guardar",
+		"cancel": "Cancelar",
+		"add": "Agregar",
+		"register": "Registrar",
+		"loading": "Cargando...",
+		"error": "Algo salió mal",
+		"previous": "Anterior",
+		"next": "Siguiente",
+		"columns": "Columnas",
+		"noResults": "Sin resultados.",
+		"filterNames": "Filtrar nombres...",
+		"all": "Todo",
+		"version": "Versión 1.0.0",
+		"signIn": "Iniciar Sesión",
+		"beta": "beta",
+		"pickDate": "Seleccionar fecha",
+		"switchLanguage": "Cambiar idioma",
+		"close": "Cerrar",
+		"openFoodDetails": "Abrir Detalles del Alimento",
+		"units": {
+			"kcal": "kcal",
+			"g": "g",
+			"kg": "kg",
+			"cm": "cm",
+			"min": "min",
+			"min_abbr": "Min",
+			"percent": "%",
+			"lb": "lb",
+			"ft": "ft",
+			"m": "m",
+			"ml": "ml",
+			"oz": "oz",
+			"cup": "taza"
+		},
+		"navigation": {
+			"overview": "Resumen",
+			"food": "Comida",
+			"exercise": "Ejercicio",
+			"diary": "Diario",
+			"settings": "Ajustes",
+			"home": "Inicio",
+			"dashboard": "Panel",
+			"contact": "Contacto",
+			"homePageTitle": "Página de inicio",
+			"dashboardPageTitle": "Página del panel",
+			"contactTitle": "Contactar desarrollador"
+		},
+		"meals": {
+			"breakfast": "Desayuno",
+			"lunch": "Almuerzo",
+			"dinner": "Cena",
+			"snack": "Merienda",
+			"uncategorized": "Sin categoría"
+		},
+		"nutrition": {
+			"calories": "Calorías",
+			"protein": "Proteína",
+			"carbs": "Carbohidratos",
+			"fat": "Grasa",
+			"fats": "Grasas",
+			"consumed": "Consumido:",
+			"remaining": "Restante:"
+		},
+		"days": {
+			"monday": "Lunes",
+			"tuesday": "Martes",
+			"wednesday": "Miércoles",
+			"thursday": "Jueves",
+			"friday": "Viernes",
+			"saturday": "Sábado",
+			"sunday": "Domingo"
+		},
+		"months": {
+			"january": "Enero",
+			"february": "Febrero",
+			"march": "Marzo",
+			"april": "Abril",
+			"may": "Mayo",
+			"june": "Junio",
+			"july": "Julio",
+			"august": "Agosto",
+			"september": "Septiembre",
+			"october": "Octubre",
+			"november": "Noviembre",
+			"december": "Diciembre"
+		}
+	},
+	"landing": {
+		"hero": {
+			"smart": "Inteligente,",
+			"simple": "simple",
+			"fitnessTracking": "Seguimiento Fitness",
+			"tagline": "Sigue tu viaje fitness, paso a paso",
+			"starOnGithub": "Estrella en GitHub",
+			"getStarted": "Comenzar",
+			"dashboard": "Panel"
+		},
+		"chart": {
+			"title": "Resumen Nutricional de Hoy",
+			"calories": "Calor\u00edas",
+			"fatLoss": "Has perdido 4.2 kg de grasa este mes"
+		},
+		"footer": {
+			"madeBy": "Hecho por fraineralex usando",
+			"twitter": "Twitter"
+		}
+	},
+	"about": {
+		"title": "Acerca de",
+		"description": "es una aplicaci\u00f3n web gratuita de seguimiento fitness con funciones impulsadas por IA para registrar r\u00e1pidamente comidas y ejercicios, ayud\u00e1ndote a mantenerte saludable y en forma.",
+		"purpose": "Ya sea que quieras perder peso, ganar m\u00fasculo o mantener un estilo de vida saludable. Tracky hace que el seguimiento de tu progreso sea simple y eficiente.",
+		"builtBy": "Creado por",
+		"sourceCode": "C\u00f3digo fuente disponible en",
+		"github": "GitHub",
+		"contact": "Si tienes alg\u00fan problema, cont\u00e1ctanos por",
+		"email": "Correo electr\u00f3nico",
+		"or": "o"
+	},
+	"dashboard": {
+		"title": "Panel",
+		"chatWithAI": "Chat con IA",
+		"aiChatPlaceholder": "Registra 2 huevos para el desayuno o 30 min de carrera",
+		"aiChatInstruction": "Especifica las porciones para comida o duraci\u00f3n y esfuerzo para ejercicios. Se admiten im\u00e1genes.",
+		"sections": {
+			"nutrition": "Nutrici\u00f3n",
+			"expenditure": "Gasto",
+			"scaleWeight": "Peso en B\u00e1scula",
+			"goalProgress": "Progreso del Objetivo",
+			"weightGoal": "Objetivo de {goal} Peso",
+			"nutritionTargets": "Nutrici\u00f3n y Objetivos",
+			"consumed": "Consumido",
+			"remaining": "Restante"
+		},
+		"streaks": {
+			"foodStreak": "Racha de Comida",
+			"exerciseStreak": "Racha de Ejercicio"
+		},
+		"dateRange": {
+			"now": "Ahora"
+		},
+		"of": "de"
+	},
+	"food": {
+		"title": "Comida",
+		"addMeal": "Agregar Comida",
+		"addMealToDiary": "Agregar Comida al Diario",
+		"registerFood": "Registrar Comida",
+		"registerNewFood": "Registrar Nueva Comida",
+		"registerDescription": "Ingresa los detalles del alimento que deseas registrar.",
+		"aiChat": "Chat IA",
+		"chatWithAI": "Chat con IA",
+		"aiChatPlaceholder": "Registra 100 g de pechuga de pollo para el almuerzo",
+		"aiChatInstruction": "Por favor especifica el alimento, el tama\u00f1o de la porci\u00f3n y el grupo de comida.",
+		"form": {
+			"name": "Nombre",
+			"namePlaceholder": "ej. Banana",
+			"calories": "Calor\u00edas",
+			"caloriesPlaceholder": "ej. 105",
+			"protein": "Prote\u00edna (g)",
+			"proteinPlaceholder": "ej. 1.3",
+			"carbs": "Carbohidratos (g)",
+			"carbsPlaceholder": "ej. 27",
+			"fats": "Grasas (g)",
+			"fatsPlaceholder": "ej. 0.3",
+			"servingSize": "Tama\u00f1o de Porci\u00f3n",
+			"servingSizePlaceholder": "ej. 100",
+			"servingUnit": "Unidad de Porci\u00f3n",
+			"selectUnit": "Seleccionar unidad",
+			"diaryGroup": "Grupo del Diario",
+			"mealGroup": "Grupo de Comida",
+			"portion": "Porci\u00f3n",
+			"unit": "Unidad"
+		},
+		"units": {
+			"grams": "Gramos (g)",
+			"milliliters": "Mililitros (ml)",
+			"ounces": "Onzas (oz)",
+			"cups": "Tazas"
+		},
+		"drawer": {
+			"portionLimitError": "La porción excede el límite de 10,000 gramos"
+		},
+		"dataSource": "Fuente de Datos:",
+		"usdaFoodData": "USDA FoodData Central",
+		"nutritionNote": "Los valores nutricionales se basan en una porción de 100g.",
+		"card": {
+			"ofDailyGoal": "del objetivo diario"
+		},
+		"graphics": {
+			"tabs": {
+				"weeklyTrends": "Tendencias Semanales",
+				"weightChanges": "Cambios de Peso",
+				"macronutrients": "Macronutrientes",
+				"goalToday": "Objetivo (Hoy)",
+				"goalWeek": "Objetivo (Semana)"
+			},
+			"weeklyNutritionalTrends": "Tendencias Nutricionales Semanales",
+			"weightChangesTitle": "Cambios de Peso",
+			"macronutrientDistribution": "Distribución de Macronutrientes",
+			"todayGoalCompletion": "Porcentaje de Objetivo Completado Hoy",
+			"weekGoalCompletion": "Porcentaje de Objetivo Completado Semanal"
+		}
+	},
+	"exercise": {
+		"title": "Ejercicio",
+		"addExercise": "Agregar Ejercicio",
+		"registerExercise": "Registrar Ejercicio",
+		"chatWithAI": "Chat con IA",
+		"aiChatPlaceholder": "Registra 30 minutos de cardio en la ma\u00f1ana",
+		"aiChatInstruction": "Por favor especifica el ejercicio, duraci\u00f3n, intensidad y grupo del diario. Tambi\u00e9n puedes subir im\u00e1genes de Apple Watch, pantallas de cinta o equipos de fitness.",
+		"categories": "Categor\u00edas",
+		"form": {
+			"duration": "Duraci\u00f3n",
+			"durationPlaceholder": "Duraci\u00f3n",
+			"effortLevel": "Nivel de Esfuerzo",
+			"energyBurned": "Energ\u00eda Quemada",
+			"energyBurnedPlaceholder": "Energ\u00eda Quemada",
+			"diaryGroup": "Grupo del Diario",
+			"addToDiary": "Agregar al diario",
+			"basedOnWeight": "Basado en tu peso actual de {weight} kg"
+		},
+		"effortLevels": {
+			"easy": "Fácil",
+			"moderate": "Moderado",
+			"hard": "Difícil",
+			"very-hard": "Muy Difícil"
+		},
+		"cards": {
+			"totalEnergyBurned": "Energía Total Quemada",
+			"totalExerciseTime": "Tiempo Total de Ejercicio",
+			"avgSessionDuration": "Duración Prom. de Sesión",
+			"exercisesThisWeek": "Ejercicios Esta Semana",
+			"times": "veces"
+		},
+		"graphics": {
+			"tabs": {
+				"energyBurned": "Energ\u00eda Quemada",
+				"exerciseFrequency": "Frecuencia de Ejercicio",
+				"timeCategories": "Categor\u00edas de Tiempo",
+				"monthlyProgress": "Progreso Mensual"
+			},
+			"weeklyEnergyBurned": "Energ\u00eda Semanal Quemada",
+			"caloriesBurnedEachDay": "Calor\u00edas quemadas por d\u00eda",
+			"caloriesBurned": "Calor\u00edas Quemadas",
+			"exerciseFrequencyTitle": "Frecuencia de Ejercicio",
+			"dailyExerciseCompletion": "Completado de ejercicios diarios en la \u00faltima semana",
+			"timeCategoriesTitle": "Categor\u00edas de Tiempo de Ejercicio",
+			"distributionThroughoutDay": "Distribuci\u00f3n de sesiones de ejercicio durante el d\u00eda",
+			"sessions": "sesiones",
+			"monthlyProgressTitle": "Progreso Mensual",
+			"energyAndTimeMonth": "Energ\u00eda quemada y tiempo de ejercicio en el \u00faltimo mes",
+			"energyBurnedKcal": "Energ\u00eda Quemada (kcal)",
+			"timeMinutes": "Tiempo (minutos)",
+			"exceededTargetBy": "Superaste el objetivo por {percent}% esta semana",
+			"reachedWeeklyTarget": "Alcanzaste {percent}% del objetivo semanal",
+			"excellentConsistency": "\u00a1Excelente consistencia de entrenamiento!",
+			"makingGoodProgress": "\u00a1Buen progreso!",
+			"roomForImprovement": "Hay espacio para mejorar la frecuencia de entrenamiento",
+			"mostActiveTime": "{time} es tu momento m\u00e1s activo",
+			"noActiveTimeYet": "A\u00fan no tienes tiempo activo",
+			"exceededMonthlyTarget": "Superaste el objetivo mensual por {percent}%",
+			"reachedMonthlyTarget": "Alcanzaste {percent}% del objetivo mensual",
+			"messages": {
+				"outstandingWork": "\u00a1Excelente trabajo! \u00a1Sigue con esta energ\u00eda incre\u00edble!",
+				"gettingCloser": "\u00a1Te acercas a tu objetivo! \u00a1Sigue adelante!",
+				"everyWorkoutCounts": "\u00a1Cada entrenamiento cuenta - sigue avanzando!",
+				"amazingDedication": "\u00a1Sigue con esta incre\u00edble dedicaci\u00f3n a tu fitness!",
+				"buildingSolidRoutine": "\u00a1Est\u00e1s construyendo una rutina s\u00f3lida de fitness!",
+				"increaseFrequency": "Intenta aumentar tu frecuencia de entrenamiento gradualmente",
+				"greatJobExercising": "\u00a1Buen trabajo ejercit\u00e1ndote durante {time}!",
+				"getCouchMessage": "\u00a1Lev\u00e1ntate del sof\u00e1! Tus objetivos fitness no se lograr\u00e1n solos",
+				"outstandingMonthly": "\u00a1Rendimiento mensual excepcional! \u00a1Sigue as\u00ed!",
+				"greatProgressMonth": "\u00a1Gran progreso este mes! \u00a1Sigue adelante!",
+				"keepGoingEffort": "\u00a1Sigue adelante, cada esfuerzo cuenta!"
+			}
+		}
+	},
+	"diary": {
+		"title": "Diario",
+		"filters": "Filtros",
+		"entryTypes": "Tipos de Entrada",
+		"date": "Fecha",
+		"selectDate": "Seleccionar Fecha",
+		"allDates": "Todas las Fechas",
+		"diaryGroup": "Grupo del Diario",
+		"selectDiaryGroup": "Seleccionar Grupo del Diario",
+		"allDiaryGroups": "Todos los Grupos del Diario",
+		"daySummary": "Resumen del Día",
+		"burned": "Quemadas",
+		"cal": "Cal",
+		"duration": "Duración",
+		"types": {
+			"meal": "comida",
+			"exercise": "ejercicio",
+			"food": "alimento",
+			"updates": "actualizaciones"
+		},
+		"timeline": {
+			"kcal": "kcal",
+			"kcalBurned": "kcal quemadas",
+			"protein": "proteína",
+			"fat": "grasa",
+			"carbs": "carbohidratos",
+			"effort": "Esfuerzo:",
+			"noEntriesFiltered": "No se encontraron entradas para los filtros seleccionados",
+			"noEntriesYet": "Aún no hay entradas para mostrar"
+		},
+		"entries": {
+			"newFoodRegistration": "Nuevo Registro de Alimento",
+			"startActivityLevel": "Nivel de Actividad Inicial",
+			"newActivityLevel": "Nuevo Nivel de Actividad",
+			"startBodyFat": "Porcentaje de Grasa Corporal Inicial",
+			"newBodyFat": "Nuevo Porcentaje de Grasa Corporal",
+			"startGoal": "Objetivo Inicial",
+			"newGoal": "Nuevo Objetivo",
+			"startGoalWeight": "Peso Objetivo Inicial",
+			"newGoalWeight": "Nuevo Peso Objetivo",
+			"startHeight": "Altura Inicial",
+			"newHeight": "Nueva Altura",
+			"startWeight": "Peso Inicial",
+			"newWeight": "Nuevo Peso"
+		}
+	},
+	"settings": {
+		"title": "Ajustes",
+		"subtitle": "Configura los ajustes de esta aplicación",
+		"currentValue": "Valor actual: {value}%",
+		"sections": {
+			"personalInfo": "Informaci\u00f3n Personal",
+			"preferencesGoals": "Preferencias y Objetivos",
+			"supportInfo": "Soporte e Informaci\u00f3n"
+		},
+		"fields": {
+			"born": "Nacimiento",
+			"bornDate": "Fecha de Nacimiento",
+			"sex": "Sexo",
+			"activity": "Actividad",
+			"activityLevel": "Nivel de Actividad",
+			"height": "Altura",
+			"weight": "Peso",
+			"bodyFat": "Grasa Corporal",
+			"bodyFatPercentage": "Porcentaje de Grasa Corporal (%)",
+			"goal": "Objetivo",
+			"fitnessGoal": "Objetivo Fitness",
+			"goalWeight": "Peso Objetivo",
+			"goalProgress": "Progreso del Objetivo"
+		},
+		"placeholders": {
+			"enterHeight": "Ingresa tu altura",
+			"enterWeight": "Ingresa tu peso",
+			"enterBodyFat": "Ingresa tu grasa corporal",
+			"enterGoalWeight": "Ingresa tu peso objetivo"
+		},
+		"sexOptions": {
+			"male": "masculino",
+			"female": "femenino"
+		},
+		"goalOptions": {
+			"maintain": "mantener",
+			"lose": "perder",
+			"gain": "ganar"
+		},
+		"support": {
+			"reachOut": "Cont\u00e1ctanos",
+			"getTechnicalSupport": "Obtener soporte t\u00e9cnico",
+			"about": "Acerca de",
+			"learnMore": "Conoce m\u00e1s sobre Tracky",
+			"healthDisclaimer": "Aviso de Salud",
+			"understandGuidelines": "Entender las gu\u00edas de salud"
+		},
+		"healthDisclaimer": {
+			"title": "Aviso de Salud",
+			"description": "proporciona seguimiento de salud y fitness solo con fines informativos. No sustituye el consejo m\u00e9dico profesional, el diagn\u00f3stico o el tratamiento.",
+			"advice": "Siempre consulta con un profesional de la salud antes de comenzar cualquier nuevo r\u00e9gimen de fitness o salud. Suspende el uso inmediatamente si experimentas molestias o efectos adversos, y busca atenci\u00f3n m\u00e9dica.",
+			"safetyNote": "Mant\u00e9nte seguro mientras usas"
+		}
+	},
+	"onboarding": {
+		"title": "Configuración Inicial",
+		"completing": "Completando configuración inicial...",
+		"personalInfo": {
+			"dateOfBirthQuestion": "¿Cuál es tu fecha de nacimiento?",
+			"dateOfBirthDescription": "Tu fecha de nacimiento se usa para calcular tu edad.",
+			"sexQuestion": "¿Cuál es tu sexo?",
+			"male": "Masculino",
+			"female": "Femenino"
+		},
+		"bodyMetrics": {
+			"heightQuestion": "\u00bfCu\u00e1l es tu altura?",
+			"weightQuestion": "\u00bfCu\u00e1l es tu peso?",
+			"height": "Altura",
+			"weight": "peso",
+			"unitOfMeasure": "Unidad de medida"
+		},
+		"fitnessGoals": {
+			"goalQuestion": "\u00bfCu\u00e1l es tu objetivo?",
+			"activityQuestion": "\u00bfQu\u00e9 tan activo eres?",
+			"goals": {
+				"loseWeight": "Perder Peso",
+				"loseWeightDesc": "Objetivo de perder peso",
+				"maintainWeight": "Mantener Peso",
+				"maintainWeightDesc": "Objetivo de mantener peso",
+				"gainWeight": "Ganar Peso",
+				"gainWeightDesc": "Objetivo de ganar peso"
+			},
+			"activityLevels": {
+				"sedentary": "Mayormente Sedentario",
+				"sedentaryDesc": "Menos de 5,000 pasos al d\u00eda",
+				"moderate": "Mayormente Activo",
+				"moderateDesc": "5,000 a 10,000 pasos al d\u00eda",
+				"active": "Muy Activo",
+				"activeDesc": "M\u00e1s de 10,000 pasos al d\u00eda"
+			}
+		}
+	},
+	"aiChat": {
+		"title": "Chat IA",
+		"description": "Describe comidas o entrenamientos y la IA los registrar\u00e1.",
+		"chatOptions": "Opciones del chat",
+		"clearHistory": "Borrar historial",
+		"storageUsage": "Uso de almacenamiento:",
+		"removedMessages": "Se elimin\u00f3 {count} mensaje antiguo",
+		"removedMessagesPlural": "Se eliminaron {count} mensajes antiguos",
+		"analyzing": "Analizando...",
+		"entryPhoto": "Foto de entrada",
+		"entryImage": "Imagen de entrada",
+		"mealAttachment": "Imagen adjunta de comida",
+		"successMessages": {
+			"historyCleared": "Historial borrado",
+			"consumptionAdded": "Consumo agregado exitosamente",
+			"exerciseAdded": "Ejercicio agregado exitosamente"
+		},
+		"errorMessages": {
+			"unableToSave": "No se pudo guardar el mensaje del chat localmente",
+			"unableToLoad": "No se pudo cargar el historial del chat",
+			"unableToClear": "No se pudo borrar el historial del chat",
+			"unableToSend": "No se pudo enviar el mensaje",
+			"unableToUpdate": "No se pudo actualizar el mensaje localmente",
+			"unableToProcess": "No se pudo procesar la imagen"
+		},
+		"loadingMessages": {
+			"addingFood": "Agregando consumo de comida...",
+			"addingExercise": "Agregando ejercicio..."
+		}
+	},
+	"notFound": {
+		"title": "404",
+		"subtitle": "P\u00e1gina No Encontrada",
+		"description": "Lo sentimos, la p\u00e1gina que buscas no existe o ha sido movida.",
+		"backToDashboard": "Volver al Panel"
+	},
+	"theme": {
+		"toggleTheme": "Cambiar tema",
+		"light": "Claro",
+		"dark": "Oscuro",
+		"system": "Sistema"
+	},
+	"toast": {
+		"success": {
+			"saved": "Guardado exitosamente",
+			"deleted": "Eliminado exitosamente",
+			"onboardingComplete": "\u00a1Configuraci\u00f3n completada!",
+			"foodRegistered": "Comida registrada exitosamente"
+		},
+		"error": {
+			"generic": "Algo sali\u00f3 mal",
+			"tryAgain": "Por favor intenta de nuevo"
+		}
+	},
+	"metadata": {
+		"dashboard": "Panel",
+		"food": "Comida",
+		"exercise": "Ejercicio",
+		"diary": "Diario",
+		"settings": "Ajustes",
+		"onboarding": "Configuraci\u00f3n Inicial"
+	}
+}

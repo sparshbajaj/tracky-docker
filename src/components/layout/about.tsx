@@ -1,3 +1,5 @@
+'use client'
+
 import { CircleHelp } from 'lucide-react'
 
 import { Button } from '~/components/ui/button'
@@ -8,8 +10,11 @@ import {
 	DialogTitle,
 	DialogTrigger
 } from '~/components/ui/dialog'
+import { useDictionary } from '../providers/dictionary-provider'
 
 export function About() {
+	const { dictionary } = useDictionary()
+
 	return (
 		<Dialog>
 			<DialogTrigger asChild>
@@ -23,7 +28,7 @@ export function About() {
 			</DialogTrigger>
 			<DialogContent>
 				<DialogHeader>
-					<DialogTitle>About</DialogTitle>
+					<DialogTitle>{dictionary.about.title}</DialogTitle>
 				</DialogHeader>
 				<div className='flex flex-col justify-center gap-4 text-sm text-muted-foreground'>
 					<p>
@@ -31,16 +36,11 @@ export function About() {
 							trac
 							<span className='text-wood-950 dark:text-wood-100'>ky</span>
 						</span>{' '}
-						is a free fitness tracking web app with AI-powered features to
-						quickly log meals and exercises, helping you stay healthy and fit.
+						{dictionary.about.description}
 					</p>
-					<p>
-						Whether you&apos;re aiming to lose weight, build muscle, or maintain
-						a healthy lifestyle. Tracky makes tracking your progress simple and
-						efficient.
-					</p>
+					<p>{dictionary.about.purpose}</p>
 					<p className='text-pretty'>
-						Built by{' '}
+						{dictionary.about.builtBy}{' '}
 						<a
 							href='https://www.fraineralex.dev'
 							target='_blank'
@@ -49,34 +49,33 @@ export function About() {
 						>
 							fraineralex
 						</a>
-						. {''}
-						Source code available on{' '}
+						. {dictionary.about.sourceCode}{' '}
 						<a
 							href='https://github.com/fraineralex/tracky'
 							target='_blank'
 							rel='noopener noreferrer'
 							className='text-blue-500'
 						>
-							GitHub
+							{dictionary.about.github}
 						</a>
 						.
 					</p>
 					<p>
-						If you have any issues, reach out via{' '}
+						{dictionary.about.contact}{' '}
 						<a
 							href='mailto:fraineralex2001@gmail.com'
 							className='text-blue-500'
 						>
-							Email
+							{dictionary.about.email}
 						</a>{' '}
-						or{' '}
+						{dictionary.about.or}{' '}
 						<a
 							href='https://x.com/fraineralex'
 							target='_blank'
 							rel='noopener noreferrer'
 							className='text-blue-500'
 						>
-							Twitter
+							{dictionary.landing.footer.twitter}
 						</a>
 						.
 					</p>

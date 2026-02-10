@@ -1,0 +1,480 @@
+{
+	"common": {
+		"save": "Save",
+		"cancel": "Cancel",
+		"add": "Add",
+		"register": "Register",
+		"loading": "Loading...",
+		"error": "Something went wrong",
+		"previous": "Previous",
+		"next": "Next",
+		"columns": "Columns",
+		"noResults": "No results.",
+		"filterNames": "Filter names...",
+		"all": "All",
+		"version": "Version 1.0.0",
+		"signIn": "Sign In",
+		"beta": "beta",
+		"pickDate": "Pick a date",
+		"switchLanguage": "Switch language",
+		"close": "Close",
+		"openFoodDetails": "Open Food Details",
+		"units": {
+			"kcal": "kcal",
+			"g": "g",
+			"kg": "kg",
+			"cm": "cm",
+			"min": "min",
+			"min_abbr": "Min",
+			"percent": "%",
+			"lb": "lb",
+			"ft": "ft",
+			"m": "m",
+			"ml": "ml",
+			"oz": "oz",
+			"cup": "cup"
+		},
+		"navigation": {
+			"overview": "Overview",
+			"food": "Food",
+			"exercise": "Exercise",
+			"diary": "Diary",
+			"settings": "Settings",
+			"home": "Home",
+			"dashboard": "Dashboard",
+			"contact": "Contact",
+			"homePageTitle": "Home page",
+			"dashboardPageTitle": "Dashboard page",
+			"contactTitle": "Contact developer"
+		},
+		"meals": {
+			"breakfast": "Breakfast",
+			"lunch": "Lunch",
+			"dinner": "Dinner",
+			"snack": "Snack",
+			"uncategorized": "Uncategorized"
+		},
+		"nutrition": {
+			"calories": "Calories",
+			"protein": "Protein",
+			"carbs": "Carbs",
+			"fat": "Fat",
+			"fats": "Fats",
+			"consumed": "Consumed:",
+			"remaining": "Remaining:"
+		},
+		"days": {
+			"monday": "Monday",
+			"tuesday": "Tuesday",
+			"wednesday": "Wednesday",
+			"thursday": "Thursday",
+			"friday": "Friday",
+			"saturday": "Saturday",
+			"sunday": "Sunday"
+		},
+		"months": {
+			"january": "January",
+			"february": "February",
+			"march": "March",
+			"april": "April",
+			"may": "May",
+			"june": "June",
+			"july": "July",
+			"august": "August",
+			"september": "September",
+			"october": "October",
+			"november": "November",
+			"december": "December"
+		}
+	},
+	"landing": {
+		"hero": {
+			"smart": "Smart,",
+			"simple": "simple",
+			"fitnessTracking": "Fitness Tracking",
+			"tagline": "Follow your fitness journey, every step of the way",
+			"starOnGithub": "Star on GitHub",
+			"getStarted": "Get started",
+			"dashboard": "Dashboard"
+		},
+		"chart": {
+			"title": "Today's Nutrition Summary",
+			"calories": "Calories",
+			"fatLoss": "You have lost 4.2 kg of fat this month"
+		},
+		"footer": {
+			"madeBy": "Made by fraineralex using",
+			"twitter": "Twitter"
+		}
+	},
+	"about": {
+		"title": "About",
+		"description": "is a free fitness tracking web app with AI-powered features to quickly log meals and exercises, helping you stay healthy and fit.",
+		"purpose": "Whether you're aiming to lose weight, build muscle, or maintain a healthy lifestyle. Tracky makes tracking your progress simple and efficient.",
+		"builtBy": "Built by",
+		"sourceCode": "Source code available on",
+		"github": "GitHub",
+		"contact": "If you have any issues, reach out via",
+		"email": "Email",
+		"or": "or"
+	},
+	"dashboard": {
+		"title": "Dashboard",
+		"chatWithAI": "Chat with AI",
+		"aiChatPlaceholder": "Log 2 eggs for breakfast or 30 min run",
+		"aiChatInstruction": "Specify portions for food or duration and effort for exercises. Images are supported.",
+		"sections": {
+			"nutrition": "Nutrition",
+			"expenditure": "Expenditure",
+			"scaleWeight": "Scale Weight",
+			"goalProgress": "Goal Progress",
+			"weightGoal": "Weight {goal} Goal",
+			"nutritionTargets": "Nutrition & Targets",
+			"consumed": "Consumed",
+			"remaining": "Remaining"
+		},
+		"streaks": {
+			"foodStreak": "Food Streak",
+			"exerciseStreak": "Exercise Streak"
+		},
+		"dateRange": {
+			"now": "Now"
+		},
+		"of": "of"
+	},
+	"food": {
+		"title": "Food",
+		"addMeal": "Add Meal",
+		"addMealToDiary": "Add Meal to Diary",
+		"registerFood": "Register Food",
+		"registerNewFood": "Register New Food",
+		"registerDescription": "Enter the details of the food item you want to register.",
+		"aiChat": "AI Chat",
+		"chatWithAI": "Chat with AI",
+		"aiChatPlaceholder": "Log 100 g of chicken breast for lunch",
+		"aiChatInstruction": "Please specify the food item, portion size, and meal group.",
+		"form": {
+			"name": "Name",
+			"namePlaceholder": "e.g. Banana",
+			"calories": "Calories",
+			"caloriesPlaceholder": "e.g. 105",
+			"protein": "Protein (g)",
+			"proteinPlaceholder": "e.g. 1.3",
+			"carbs": "Carbs (g)",
+			"carbsPlaceholder": "e.g. 27",
+			"fats": "Fats (g)",
+			"fatsPlaceholder": "e.g. 0.3",
+			"servingSize": "Serving Size",
+			"servingSizePlaceholder": "e.g. 100",
+			"servingUnit": "Serving Unit",
+			"selectUnit": "Select unit",
+			"diaryGroup": "Diary Group",
+			"mealGroup": "Meal Group",
+			"portion": "Portion",
+			"unit": "Unit"
+		},
+		"units": {
+			"grams": "Grams (g)",
+			"milliliters": "Milliliters (ml)",
+			"ounces": "Ounces (oz)",
+			"cups": "Cups"
+		},
+		"drawer": {
+			"portionLimitError": "The portion exceeds the limit of 10,000 grams"
+		},
+		"dataSource": "Data Source:",
+		"usdaFoodData": "USDA FoodData Central",
+		"nutritionNote": "Nutritional values are based on a 100g serving size.",
+		"card": {
+			"ofDailyGoal": "of daily goal"
+		},
+		"graphics": {
+			"tabs": {
+				"weeklyTrends": "Weekly Trends",
+				"weightChanges": "Weight Changes",
+				"macronutrients": "Macronutrients",
+				"goalToday": "Goal (Today)",
+				"goalWeek": "Goal (Week)"
+			},
+			"weeklyNutritionalTrends": "Weekly Nutritional Trends",
+			"weightChangesTitle": "Weight Changes",
+			"macronutrientDistribution": "Macronutrient Distribution",
+			"todayGoalCompletion": "Today's Goal Completion Percentage",
+			"weekGoalCompletion": "Week Goal Completion Percentage"
+		}
+	},
+	"exercise": {
+		"title": "Exercise",
+		"addExercise": "Add Exercise",
+		"registerExercise": "Register Exercise",
+		"chatWithAI": "Chat with AI",
+		"aiChatPlaceholder": "Log 30 minutes of cardio in the morning",
+		"aiChatInstruction": "Please specify the exercise, duration, intensity and diary group. You can also upload images from Apple Watch, treadmill displays, or fitness equipment.",
+		"categories": "Categories",
+		"form": {
+			"duration": "Duration",
+			"durationPlaceholder": "Duration",
+			"effortLevel": "Effort Level",
+			"energyBurned": "Energy Burned",
+			"energyBurnedPlaceholder": "Energy Burned",
+			"diaryGroup": "Diary Group",
+			"addToDiary": "Add to diary",
+			"basedOnWeight": "Based on your current weight of {weight} kg"
+		},
+		"effortLevels": {
+			"easy": "Easy",
+			"moderate": "Moderate",
+			"hard": "Hard",
+			"very-hard": "Very Hard"
+		},
+		"cards": {
+			"totalEnergyBurned": "Total Energy Burned",
+			"totalExerciseTime": "Total Exercise Time",
+			"avgSessionDuration": "Avg. Session Duration",
+			"exercisesThisWeek": "Exercises This Week",
+			"times": "times"
+		},
+		"graphics": {
+			"tabs": {
+				"energyBurned": "Energy Burned",
+				"exerciseFrequency": "Exercise Frequency",
+				"timeCategories": "Time Categories",
+				"monthlyProgress": "Monthly Progress"
+			},
+			"weeklyEnergyBurned": "Weekly Energy Burned",
+			"caloriesBurnedEachDay": "Calories burned for each day",
+			"caloriesBurned": "Calories Burned",
+			"exerciseFrequencyTitle": "Exercise Frequency",
+			"dailyExerciseCompletion": "Daily exercise completion over the past week",
+			"timeCategoriesTitle": "Exercise Time Categories",
+			"distributionThroughoutDay": "Distribution of exercise sessions throughout the day",
+			"sessions": "sessions",
+			"monthlyProgressTitle": "Monthly Progress",
+			"energyAndTimeMonth": "Energy burned and exercise time over the past month",
+			"energyBurnedKcal": "Energy Burned (kcal)",
+			"timeMinutes": "Time (minutes)",
+			"exceededTargetBy": "Exceeded target by {percent}% this week",
+			"reachedWeeklyTarget": "Reached {percent}% of weekly target",
+			"excellentConsistency": "Excellent workout consistency!",
+			"makingGoodProgress": "Making good progress!",
+			"roomForImprovement": "Room for improvement in workout frequency",
+			"mostActiveTime": "{time} is your most active time",
+			"noActiveTimeYet": "You have no active time yet",
+			"exceededMonthlyTarget": "Exceeded monthly target by {percent}%",
+			"reachedMonthlyTarget": "Reached {percent}% of monthly target",
+			"messages": {
+				"outstandingWork": "Outstanding work! Keep up this amazing energy!",
+				"gettingCloser": "Getting closer to your goal! Keep pushing!",
+				"everyWorkoutCounts": "Every workout counts - keep moving forward!",
+				"amazingDedication": "Keep up this amazing dedication to your fitness!",
+				"buildingSolidRoutine": "You're building a solid fitness routine!",
+				"increaseFrequency": "Try to increase your workout frequency gradually",
+				"greatJobExercising": "Great job exercising during {time}!",
+				"getCouchMessage": "Get up from that couch! Your fitness goals won't achieve themselves",
+				"outstandingMonthly": "Outstanding monthly performance! Keep up the great work!",
+				"greatProgressMonth": "Great progress this month! Keep pushing!",
+				"keepGoingEffort": "Keep going, every bit of effort counts!"
+			}
+		}
+	},
+	"diary": {
+		"title": "Diary",
+		"filters": "Filters",
+		"entryTypes": "Entry Types",
+		"date": "Date",
+		"selectDate": "Select Date",
+		"allDates": "All Dates",
+		"diaryGroup": "Diary Group",
+		"selectDiaryGroup": "Select Diary Group",
+		"allDiaryGroups": "All Diary Groups",
+		"daySummary": "Day Summary",
+		"burned": "Burned",
+		"cal": "Cal",
+		"duration": "Duration",
+		"types": {
+			"meal": "meal",
+			"exercise": "exercise",
+			"food": "food",
+			"updates": "updates"
+		},
+		"timeline": {
+			"kcal": "kcal",
+			"kcalBurned": "kcal burned",
+			"protein": "protein",
+			"fat": "fat",
+			"carbs": "carbs",
+			"effort": "Effort:",
+			"noEntriesFiltered": "No entries found for the selected filters",
+			"noEntriesYet": "There are no entries to display yet"
+		},
+		"entries": {
+			"newFoodRegistration": "New Food Registration",
+			"startActivityLevel": "Start Activity Level",
+			"newActivityLevel": "New Activity Level",
+			"startBodyFat": "Start Body Fat Percentage",
+			"newBodyFat": "New Body Fat Percentage",
+			"startGoal": "Start Goal",
+			"newGoal": "New Goal",
+			"startGoalWeight": "Start Goal Weight",
+			"newGoalWeight": "New Goal Weight",
+			"startHeight": "Start Height",
+			"newHeight": "New Height",
+			"startWeight": "Start Weight",
+			"newWeight": "New Weight"
+		}
+	},
+	"settings": {
+		"title": "Settings",
+		"subtitle": "Configure the settings for this application",
+		"currentValue": "Current value: {value}%",
+		"sections": {
+			"personalInfo": "Personal Information",
+			"preferencesGoals": "Preferences and Goals",
+			"supportInfo": "Support and Information"
+		},
+		"fields": {
+			"born": "Born",
+			"bornDate": "Born Date",
+			"sex": "Sex",
+			"activity": "Activity",
+			"activityLevel": "Activity Level",
+			"height": "Height",
+			"weight": "Weight",
+			"bodyFat": "Body Fat",
+			"bodyFatPercentage": "Body Fat Percentage (%)",
+			"goal": "Goal",
+			"fitnessGoal": "Fitness Goal",
+			"goalWeight": "Goal Weight",
+			"goalProgress": "Goal Progress"
+		},
+		"placeholders": {
+			"enterHeight": "Enter your height",
+			"enterWeight": "Enter your weight",
+			"enterBodyFat": "Enter your body fat",
+			"enterGoalWeight": "Enter your goal weight"
+		},
+		"sexOptions": {
+			"male": "male",
+			"female": "female"
+		},
+		"goalOptions": {
+			"maintain": "maintain",
+			"lose": "lose",
+			"gain": "gain"
+		},
+		"support": {
+			"reachOut": "Reach out",
+			"getTechnicalSupport": "Get technical support",
+			"about": "About",
+			"learnMore": "Learn more about Tracky",
+			"healthDisclaimer": "Health Disclaimer",
+			"understandGuidelines": "Understand the health guidelines"
+		},
+		"healthDisclaimer": {
+			"title": "Health Disclaimer",
+			"description": "provides health and fitness tracking for informational purposes only. It is not a substitute for professional medical advice, diagnosis, or treatment.",
+			"advice": "Always consult with a healthcare provider before starting any new fitness or health regimen. Discontinue use immediately if you experience discomfort or adverse effects, and seek medical attention.",
+			"safetyNote": "Stay safe while using"
+		}
+	},
+	"onboarding": {
+		"title": "Onboarding",
+		"completing": "Completing onboarding...",
+		"personalInfo": {
+			"dateOfBirthQuestion": "What is your date of birth?",
+			"dateOfBirthDescription": "Your date of birth is used to calculate your age.",
+			"sexQuestion": "Which one is your sex?",
+			"male": "Male",
+			"female": "Female"
+		},
+		"bodyMetrics": {
+			"heightQuestion": "What is your height?",
+			"weightQuestion": "What is your weight?",
+			"height": "Height",
+			"weight": "weight",
+			"unitOfMeasure": "Unity of measure"
+		},
+		"fitnessGoals": {
+			"goalQuestion": "What is your goal?",
+			"activityQuestion": "How active are you?",
+			"goals": {
+				"loseWeight": "Lose Weight",
+				"loseWeightDesc": "Goal of losing weight",
+				"maintainWeight": "Maintain Weight",
+				"maintainWeightDesc": "Goal of maintaining weight",
+				"gainWeight": "Gain Weight",
+				"gainWeightDesc": "Goal of gaining weight"
+			},
+			"activityLevels": {
+				"sedentary": "Mostly Sedentary",
+				"sedentaryDesc": "Less than 5,000 steps a day",
+				"moderate": "Mostly Active",
+				"moderateDesc": "5,000 to 10,000 steps a day",
+				"active": "Very Active",
+				"activeDesc": "More than 10,000 steps a day"
+			}
+		}
+	},
+	"aiChat": {
+		"title": "AI Chat",
+		"description": "Describe meals or workouts and the AI will log them.",
+		"chatOptions": "Chat options",
+		"clearHistory": "Clear history",
+		"storageUsage": "Storage usage:",
+		"removedMessages": "Removed {count} old message",
+		"removedMessagesPlural": "Removed {count} old messages",
+		"analyzing": "Analyzing...",
+		"entryPhoto": "Entry photo",
+		"entryImage": "Entry image",
+		"mealAttachment": "Meal attachment",
+		"successMessages": {
+			"historyCleared": "History cleared",
+			"consumptionAdded": "Consumption added successfully",
+			"exerciseAdded": "Exercise added successfully"
+		},
+		"errorMessages": {
+			"unableToSave": "Unable to save chat message locally",
+			"unableToLoad": "Unable to load chat history",
+			"unableToClear": "Unable to clear chat history",
+			"unableToSend": "Unable to send message",
+			"unableToUpdate": "Unable to update message locally",
+			"unableToProcess": "Unable to process image"
+		},
+		"loadingMessages": {
+			"addingFood": "Adding food consumption...",
+			"addingExercise": "Adding exercise..."
+		}
+	},
+	"notFound": {
+		"title": "404",
+		"subtitle": "Page Not Found",
+		"description": "Sorry, the page you are looking for doesn't exist or has been moved.",
+		"backToDashboard": "Back to Dashboard"
+	},
+	"theme": {
+		"toggleTheme": "Toggle theme",
+		"light": "Light",
+		"dark": "Dark",
+		"system": "System"
+	},
+	"toast": {
+		"success": {
+			"saved": "Saved successfully",
+			"deleted": "Deleted successfully",
+			"onboardingComplete": "Onboarding complete!",
+			"foodRegistered": "Food registered successfully"
+		},
+		"error": {
+			"generic": "Something went wrong",
+			"tryAgain": "Please try again"
+		}
+	},
+	"metadata": {
+		"dashboard": "Dashboard",
+		"food": "Food",
+		"exercise": "Exercise",
+		"diary": "Diary",
+		"settings": "Settings",
+		"onboarding": "Onboarding"
+	}
+}

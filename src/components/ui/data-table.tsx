@@ -31,10 +31,14 @@ import {
 	DropdownMenuContent,
 	DropdownMenuTrigger
 } from '~/components/ui/dropdown-menu'
-import { FoodDrawer } from '~/app/dashboard/_components/food/food-drawer'
+import { FoodDrawer } from '~/app/[lang]/dashboard/_components/food/food-drawer'
 import { Drawer, DrawerTrigger } from './drawer'
-import { Food } from '~/app/dashboard/_components/food/columns'
+import {
+	Food,
+	createColumns
+} from '~/app/[lang]/dashboard/_components/food/columns'
 import { DialogClose } from './dialog'
+import { useDictionary } from '~/components/providers/dictionary-provider'
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[]
@@ -42,9 +46,27 @@ interface DataTableProps<TData, TValue> {
 }
 
 export function DataTable<TData, TValue>({
-	columns,
+	columns: _columns,
 	data
 }: DataTableProps<TData, TValue>) {
+	// eslint-disable-next-line @typescript-eslint/no-unused-vars
+	void _columns // Columns are recreated with localized labels below
+	const { dictionary } = useDictionary()
+
+	// Create localized columns
+	const columns = React.useMemo(
+		() =>
+			createColumns({
+				name: dictionary.food.form.name,
+				protein: dictionary.common.nutrition.protein,
+				carbs: dictionary.common.nutrition.carbs,
+				fat: dictionary.common.nutrition.fat,
+				calories: dictionary.common.nutrition.calories,
+				servingSize: dictionary.food.form.servingSize
+			}) as ColumnDef<TData, TValue>[],
+		[dictionary]
+	)
+
 	const [sorting, setSorting] = React.useState<SortingState>([])
 	const [columnVisibility, setColumnVisibility] =
 		React.useState<VisibilityState>({})
@@ -125,7 +147,7 @@ export function DataTable<TData, TValue>({
 		<section>
 			<div className='flex items-center space-x-10 pb-4 md:space-x-20'>
 				<Input
-					placeholder='Filter names...'
+					placeholder={dictionary.common.filterNames}
 					value={filterValue}
 					onChange={event => {
 						const value = event.target.value
@@ -137,7 +159,7 @@ export function DataTable<TData, TValue>({
 				<DropdownMenu>
 					<DropdownMenuTrigger asChild>
 						<Button variant='outline' className='ml-auto'>
-							Columns
+							{dictionary.common.columns}
 						</Button>
 					</DropdownMenuTrigger>
 					<DropdownMenuContent align='end'>
@@ -224,7 +246,7 @@ export function DataTable<TData, TValue>({
 									colSpan={columns.length}
 									className='h-24 text-center'
 								>
-									No results.
+									{dictionary.common.noResults}
 								</TableCell>
 							</TableRow>
 						)}
@@ -233,25 +255,25 @@ export function DataTable<TData, TValue>({
 			</div>
 			<div className='mt-3 space-y-1'>
 				<p className='text-nowrap text-xs font-light text-foreground/80'>
-					Data Source:{' '}
+					{dictionary.food.dataSource}{' '}
 					<a
 						href='https://fdc.nal.usda.gov/'
 						target='_blank'
 						rel='noopener noreferrer'
 						className='text-foreground hover:underline'
 					>
-						USDA FoodData Central
+						{dictionary.food.usdaFoodData}
 					</a>
 				</p>
 				<p className='col-span-5 text-nowrap text-xs font-light text-foreground/80 lg:hidden'>
-					Nutritional values are based on a 100g serving size.
+					{dictionary.food.nutritionNote}
 				</p>
 			</div>
 
 			<div className='flex items-center justify-end space-x-2 py-4'>
 				<DialogClose asChild className='block lg:hidden'>
 					<Button variant='outline' size='sm'>
-						Cancel
+						{dictionary.common.cancel}
 					</Button>
 				</DialogClose>
 				<Button
@@ -260,7 +282,7 @@ export function DataTable<TData, TValue>({
 					onClick={() => table.previousPage()}
 					disabled={!table.getCanPreviousPage()}
 				>
-					Previous
+					{dictionary.common.previous}
 				</Button>
 				<Button
 					variant='outline'
@@ -268,7 +290,7 @@ export function DataTable<TData, TValue>({
 					onClick={() => table.nextPage()}
 					disabled={!table.getCanNextPage()}
 				>
-					Next
+					{dictionary.common.next}
 				</Button>
 			</div>
 		</section>
