@@ -81,6 +81,10 @@ export const registerFood = async (
 
 	try {
 		const newFood = validatedFields.data satisfies NewFood
+
+		// Para comidas manuales, copiar el nombre a nameEs (Opción B)
+		newFood.nameEs ??= newFood.name
+
 		normalizeFoodUnits(newFood)
 
 		await db.insert(food).values(newFood)

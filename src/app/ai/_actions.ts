@@ -39,6 +39,9 @@ const macroInstruction =
 const portionInstruction =
 	'Always provide a positive numeric portion in grams for every consumption entry. When the user omits measurements, infer realistic gram amounts using common serving sizes (a medium apple ≈ 180g, banana ≈ 120g, cup ≈ 240g). Never leave portion null or zero.'
 
+const foodNameLanguageInstruction =
+	'For every food entry, provide the name in BOTH English and Spanish. Use "name" field for English and "nameEs" field for Spanish. The English name is used for database lookup and should be descriptive. The Spanish name should be a natural translation that Spanish speakers would use (e.g., "Chicken Breast" → "Pechuga de Pollo", "White Rice" → "Arroz Blanco"). Both names are stored and displayed based on user language preference.'
+
 const AI_TIMEOUT_MS = 120000
 const IMAGE_TIMEOUT_MS = 60000
 
@@ -238,12 +241,14 @@ const formatMacroValue = (value: number) => Math.max(0, value).toFixed(2)
 
 const buildFoodFromMacros = (
 	name: string,
+	nameEs: string,
 	macros: CompleteMacros,
 	userId: string
 ) =>
 	({
 		userId,
 		name,
+		nameEs,
 		kcal: formatMacroValue(macros.kcalPer100g),
 		protein: formatMacroValue(macros.proteinPer100g),
 		carbs: formatMacroValue(macros.carbsPer100g),
@@ -260,12 +265,14 @@ const exerciseCategoryNames = Object.keys(EXERCISE_ICONS) as [
 const FoodEntrySchema = z.object({
 	intent: z.literal('food'),
 	name: z.string().min(1),
+	nameEs: z.string().min(1),
 	macrosPer100g: macrosPerHundredSchema
 })
 
 const ConsumptionEntrySchema = z.object({
 	intent: z.literal('consumption'),
 	foodName: z.string().nullable(),
+	foodNameEs: z.string().nullable(),
 	portion: z.number().nullable(),
 	mealGroup: z.enum(diaryGroupEnum.enumValues).default('uncategorized'),
 	macrosPer100g: macrosPerHundredSchema.nullable().optional()
@@ -330,17 +337,20 @@ const baseSystemPrompt = `You are Tracky's health logging assistant. Analyze the
 - "food": register a new food in the catalog with name and macrosPer100g.
 - "consumption": log what the user ate using existing foods. Convert every portion to grams. ${macroInstruction} ${portionInstruction}
 - "exercise": log a workout with duration in minutes, effort level, diary group, and category (cardio, strength, yoga, etc.).
+${foodNameLanguageInstruction}
 Use the schema exactly and infer realistic values when not specified. If the user describes both meals and workouts, include multiple entries. Prefer detailed but concise outputs.`
 
 const imageSystemPrompt = `Analyze every attached meal photo, nutrition label, or workout screenshot along with the conversation. Identify foods, serving details, or exercise metrics. Follow the same schema rules:
 - "food": register catalog items with macrosPer100g derived from labels or estimates.
 - "consumption": log what was eaten, inferring realistic gram portions. ${macroInstruction} ${portionInstruction}
 - "exercise": log workouts, estimating duration and effort from displays or text.
+${foodNameLanguageInstruction}
 Convert all units to grams or minutes where applicable and prefer precise data over generic text.`
 
 const selectFoodFields = {
 	id: food.id,
 	name: food.name,
+	nameEs: food.nameEs,
 	protein: food.protein,
 	kcal: food.kcal,
 	fat: food.fat,
@@ -351,6 +361,7 @@ const selectFoodFields = {
 type SelectedFoodRow = {
 	id: string
 	name: string
+	nameEs: string | null
 	protein: string
 	kcal: string
 	fat: string
@@ -372,13 +383,14 @@ const findFoodByName = async (
 
 const createFoodIfPossible = async (
 	name: string,
+	nameEs: string,
 	macros: MacrosPerHundred | null | undefined,
 	userId: string
 ): Promise<SelectedFoodRow | null> => {
 	if (!hasCompleteMacros(macros)) return null
 	const [inserted] = await db
 		.insert(food)
-		.values(buildFoodFromMacros(name, macros, userId))
+		.values(buildFoodFromMacros(name, nameEs, macros, userId))
 		.returning(selectFoodFields)
 	return inserted as SelectedFoodRow
 }
@@ -424,6 +436,7 @@ const buildSuccessLogFromFood = (
 	return {
 		successMessage: labels.consumptionAdded,
 		title: toTitleCase(foodRow.name),
+		titleEs: foodRow.nameEs ? toTitleCase(foodRow.nameEs) : undefined,
 		subTitle: (Number(foodRow.kcal) * portionFactor).toFixed(),
 		subTitleUnit: labels.calories,
 		items: [
@@ -592,7 +605,12 @@ export async function logHealthAI(
 					await db
 						.insert(food)
 						.values(
-							buildFoodFromMacros(entry.name, entry.macrosPer100g, userId)
+							buildFoodFromMacros(
+								entry.name,
+								entry.nameEs,
+								entry.macrosPer100g,
+								userId
+							)
 						)
 					if (!newCatalogFoods.includes(entry.name)) {
 						newCatalogFoods.push(entry.name)
@@ -627,6 +645,7 @@ export async function logHealthAI(
 				if (!resolvedFood) {
 					resolvedFood = await createFoodIfPossible(
 						foodName,
+						entry.foodNameEs ?? foodName,
 						entry.macrosPer100g,
 						userId
 					)
