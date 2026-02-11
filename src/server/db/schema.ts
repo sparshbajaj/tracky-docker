@@ -26,6 +26,7 @@ export const food = createTable(
 			.primaryKey()
 			.default(sql`gen_random_uuid()`),
 		name: varchar('name', { length: 256 }).notNull(),
+		nameEs: varchar('name_es', { length: 256 }),
 		protein: decimal('protein', { precision: 7, scale: 2 }).notNull(),
 		kcal: decimal('kcal', { precision: 7, scale: 2 }).notNull(),
 		fat: decimal('fat', { precision: 7, scale: 2 }).notNull(),
@@ -42,6 +43,7 @@ export const food = createTable(
 	},
 	food => ({
 		nameFoodIndex: index('food_name_idx').on(food.name),
+		nameEsFoodIndex: index('food_name_es_idx').on(food.nameEs),
 		userIdFoodIndex: index('food_user_idx').on(food.userId)
 	})
 )

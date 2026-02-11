@@ -79,6 +79,7 @@ export interface ExerciseGraphicsData {
 export interface SuccessLogData {
 	successMessage: string
 	title: string
+	titleEs?: string
 	subTitle: string
 	subTitleUnit?: string
 	items: {
