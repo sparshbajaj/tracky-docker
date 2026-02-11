@@ -11,12 +11,13 @@ import { useRef, useState } from 'react'
 import { ONBOARDING_SECTIONS } from '~/constants'
 import { type Sex } from '~/types'
 import confetti from 'canvas-confetti'
+import { pathWithLocale } from '~/i18n-config'
 import { useDictionary } from '~/components/providers/dictionary-provider'
 
 export default function OnboardingPage() {
 	const { user } = useUser()
 	const router = useRouter()
-	const { dictionary } = useDictionary()
+	const { dictionary, locale } = useDictionary()
 	const [showSection, setShowSection] = useState(ONBOARDING_SECTIONS.personal)
 	const [sex, setSex] = useState<Sex | null>(null)
 	const [bornDate, setBornDate] = useState(
@@ -61,7 +62,7 @@ export default function OnboardingPage() {
 
 			toast.dismiss('onboarding-form')
 			toast.success(dictionary.toast.success.onboardingComplete)
-			router.push('/dashboard')
+			router.push(pathWithLocale('/dashboard', locale))
 		} catch {
 			toast.dismiss('onboarding-form')
 			toast.error(dictionary.common.error)

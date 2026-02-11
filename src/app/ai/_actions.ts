@@ -27,6 +27,8 @@ import { revalidatePath, updateTag } from 'next/cache'
 import { type SuccessLogData, type TrakedField } from '~/types'
 import { EXERCISE_ICONS } from '~/constants'
 import type { DescribeImageInput, Message } from './types'
+import { getDictionary } from '~/get-dictionary'
+import { type Locale, i18n } from '~/i18n-config'
 
 type NewFood = typeof food.$inferInsert
 type NewConsumption = typeof consumption.$inferInsert
@@ -227,13 +229,10 @@ type CompleteMacros = {
 const hasCompleteMacros = (
 	macros?: MacrosPerHundred | null
 ): macros is CompleteMacros =>
-	Boolean(
-		macros &&
-			macros.kcalPer100g !== null &&
-			macros.proteinPer100g !== null &&
-			macros.carbsPer100g !== null &&
-			macros.fatPer100g !== null
-	)
+	(macros?.kcalPer100g ?? null) !== null &&
+	(macros?.proteinPer100g ?? null) !== null &&
+	(macros?.carbsPer100g ?? null) !== null &&
+	(macros?.fatPer100g ?? null) !== null
 
 const formatMacroValue = (value: number) => Math.max(0, value).toFixed(2)
 
@@ -403,35 +402,51 @@ const toTitleCase = (value: string) =>
 		.map(part => part[0]?.toUpperCase() + part.slice(1).toLowerCase())
 		.join(' ')
 
+type SuccessLogLabels = {
+	consumptionAdded: string
+	exerciseAdded: string
+	calories: string
+	protein: string
+	carbs: string
+	fats: string
+	energyBurned: string
+	duration: string
+	effortLevel: string
+}
+
 const buildSuccessLogFromFood = (
 	foodRow: SelectedFoodRow,
-	portion: number
+	portion: number,
+	labels: SuccessLogLabels
 ): SuccessLogData => {
 	const servingSize = Number(foodRow.servingSize) || 100
 	const portionFactor = portion / servingSize
 	return {
-		successMessage: 'Food consumption logged successfully',
+		successMessage: labels.consumptionAdded,
 		title: toTitleCase(foodRow.name),
 		subTitle: (Number(foodRow.kcal) * portionFactor).toFixed(),
-		subTitleUnit: 'Calories',
+		subTitleUnit: labels.calories,
 		items: [
 			{
-				name: 'Protein',
+				name: labels.protein,
 				amount: `${(Number(foodRow.protein) * portionFactor).toFixed()} g`
 			},
 			{
-				name: 'Carbs',
+				name: labels.carbs,
 				amount: `${(Number(foodRow.carbs) * portionFactor).toFixed()} g`
 			},
 			{
-				name: 'Fats',
+				name: labels.fats,
 				amount: `${(Number(foodRow.fat) * portionFactor).toFixed()} g`
 			}
 		]
 	}
 }
 
-export async function logHealthAI(messages: Message[]): Promise<Message[]> {
+export async function logHealthAI(
+	messages: Message[],
+	options?: { locale?: Locale }
+): Promise<Message[]> {
 	const { userId } = await auth()
 	if (!userId) {
 		return [
@@ -454,6 +469,23 @@ export async function logHealthAI(messages: Message[]): Promise<Message[]> {
 					'Unable to load your profile. Please refresh and try logging again.'
 			}
 		]
+	}
+
+	const locale =
+		options?.locale && i18n.locales.includes(options.locale)
+			? options.locale
+			: i18n.defaultLocale
+	const dictionary = await getDictionary(locale)
+	const successLogLabels: SuccessLogLabels = {
+		consumptionAdded: dictionary.aiChat.successMessages.consumptionAdded,
+		exerciseAdded: dictionary.aiChat.successMessages.exerciseAdded,
+		calories: dictionary.common.nutrition.calories,
+		protein: dictionary.common.nutrition.protein,
+		carbs: dictionary.common.nutrition.carbs,
+		fats: dictionary.common.nutrition.fats,
+		energyBurned: dictionary.exercise.form.energyBurned,
+		duration: dictionary.exercise.form.duration,
+		effortLevel: dictionary.exercise.form.effortLevel
 	}
 
 	const latestUserMessage = [...messages]
@@ -623,7 +655,9 @@ export async function logHealthAI(messages: Message[]): Promise<Message[]> {
 
 				await db.insert(consumption).values(newConsumption)
 				shouldRevalidateConsumption = true
-				successLogData.push(buildSuccessLogFromFood(resolvedFood, portion))
+				successLogData.push(
+					buildSuccessLogFromFood(resolvedFood, portion, successLogLabels)
+				)
 			} catch (error) {
 				console.error('Error logging AI consumption:', error)
 				errorMessages.push(
@@ -698,13 +732,21 @@ export async function logHealthAI(messages: Message[]): Promise<Message[]> {
 				await db.insert(exercise).values(newExercise)
 				shouldRevalidateExercise = true
 				successLogData.push({
-					successMessage: 'Exercise logged successfully',
+					successMessage: successLogLabels.exerciseAdded,
 					title: categoryName,
 					subTitle: diaryGroup,
 					items: [
-						{ name: 'Energy Burned', amount: energyBurned, unit: 'kcal' },
-						{ name: 'Duration', amount: duration.toString(), unit: 'minutes' },
-						{ name: 'Effort', amount: entry.effort }
+						{
+							name: successLogLabels.energyBurned,
+							amount: energyBurned,
+							unit: 'kcal'
+						},
+						{
+							name: successLogLabels.duration,
+							amount: duration.toString(),
+							unit: 'minutes'
+						},
+						{ name: successLogLabels.effortLevel, amount: entry.effort }
 					]
 				})
 			} catch (error) {
@@ -778,10 +820,26 @@ export async function logHealthAI(messages: Message[]): Promise<Message[]> {
 
 export async function describeEntryImage({
 	dataUrl,
-	mimeType
+	mimeType,
+	locale: localeParam
 }: DescribeImageInput): Promise<string> {
 	const buffer = decodeBase64Image(dataUrl)
-	if (!buffer) return 'Entry image'
+	const locale =
+		localeParam && i18n.locales.includes(localeParam as Locale)
+			? (localeParam as Locale)
+			: i18n.defaultLocale
+	const dictionary = await getDictionary(locale)
+	const fallbackLabel = dictionary.aiChat.entryImage
+	if (!buffer) return fallbackLabel
+	const respondInLanguage =
+		locale !== i18n.defaultLocale
+			? ` Your response must be in ${locale === 'es' ? 'Spanish' : locale}.`
+			: ''
+	const systemPrompt = `Describe whether this image shows a meal or an exercise screen. Mention key foods for meals or workout type plus metrics for exercises in under eight words.${respondInLanguage}`
+	const userText =
+		locale !== i18n.defaultLocale && locale === 'es'
+			? 'Describe esta imagen para una entrada de seguimiento fitness. Responde en español.'
+			: 'Describe this image for a fitness tracker entry.'
 	const startIndex = 3
 
 	for (let i = startIndex; i < GEMINI_MODELS.length; i++) {
@@ -792,15 +850,14 @@ export async function describeEntryImage({
 					model: google(modelId, {
 						structuredOutputs: false
 					}),
-					system:
-						'Describe whether this image shows a meal or an exercise screen. Mention key foods for meals or workout type plus metrics for exercises in under eight words.',
+					system: systemPrompt,
 					messages: [
 						{
 							role: 'user',
 							content: [
 								{
 									type: 'text',
-									text: 'Describe this image for a fitness tracker entry.'
+									text: userText
 								},
 								{
 									type: 'image',
@@ -815,14 +872,14 @@ export async function describeEntryImage({
 				IMAGE_TIMEOUT_MS,
 				'describeEntryImage generateObject'
 			)
-			return result.object.summary.trim() || 'Entry image'
+			return result.object.summary.trim() || fallbackLabel
 		} catch (error) {
 			console.error('Error describing entry image:', error)
 			if (i === GEMINI_MODELS.length - 1) {
-				return 'Entry image'
+				return fallbackLabel
 			}
 		}
 	}
 
-	return 'Entry image'
+	return fallbackLabel
 }

@@ -17,6 +17,7 @@ export interface Message {
 export type DescribeImageInput = {
 	dataUrl: string
 	mimeType: string
+	locale?: string
 }
 
 export type PersistedMessage = Message & {

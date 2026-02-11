@@ -45,7 +45,10 @@ import { useDictionary } from '~/components/providers/dictionary-provider'
 export const maxDuration = 30
 
 interface AIChatConversationProps {
-	action: (messages: Message[]) => Promise<Message[]>
+	action: (
+		messages: Message[],
+		options?: { locale?: string }
+	) => Promise<Message[]>
 	placeholder: string
 	instruction: string
 	describeImage?: (payload: DescribeImageInput) => Promise<string>
@@ -342,7 +345,7 @@ export default function AIChatConversation({
 		try {
 			await appendMessages([userMessage])
 			const context = prepareMessagesForAction(conversationRef.current)
-			const response = await action(context)
+			const response = await action(context, { locale })
 			await handleActionResponse(response, context.length)
 		} catch (error) {
 			console.error('Error sending chat message', error)
@@ -381,7 +384,7 @@ export default function AIChatConversation({
 		if (!describeImage) return ''
 		try {
 			return await Promise.race([
-				describeImage({ dataUrl, mimeType }),
+				describeImage({ dataUrl, mimeType, locale }),
 				new Promise<string>(resolve => setTimeout(() => resolve(''), 12000))
 			])
 		} catch (error) {
@@ -421,7 +424,7 @@ export default function AIChatConversation({
 				conversationRef.current,
 				placeholderMessage.id
 			)
-			const response = await action(context)
+			const response = await action(context, { locale })
 			await handleActionResponse(response, context.length)
 		} catch (error) {
 			console.error('Error processing image upload', error)

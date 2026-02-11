@@ -10,10 +10,11 @@ import {
 import { Button } from '../ui/button'
 import { HouseIcon, Play } from 'lucide-react'
 import Link from 'next/link'
+import { pathWithLocale } from '~/i18n-config'
 import { useDictionary } from '../providers/dictionary-provider'
 
 export function GetStartedButton() {
-	const { dictionary } = useDictionary()
+	const { dictionary, locale } = useDictionary()
 
 	return (
 		<>
@@ -58,7 +59,7 @@ export function GetStartedButton() {
 						className='group h-12 cursor-pointer px-6 hover:opacity-90 dark:hover:opacity-70'
 						asChild
 					>
-						<Link className='flex space-x-2' href='/dashboard'>
+						<Link className='flex space-x-2' href={pathWithLocale('/dashboard', locale)}>
 							<HouseIcon className='h-4 w-4 duration-100 ease-in-out group-hover:scale-110' />
 							<i className='text-base font-medium not-italic'>
 								{dictionary.landing.hero.dashboard}

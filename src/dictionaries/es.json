@@ -449,7 +449,7 @@
 		"title": "404",
 		"subtitle": "P\u00e1gina No Encontrada",
 		"description": "Lo sentimos, la p\u00e1gina que buscas no existe o ha sido movida.",
-		"backToDashboard": "Volver al Panel"
+		"backToDashboard": "Volver al Inicio"
 	},
 	"theme": {
 		"toggleTheme": "Cambiar tema",
@@ -470,7 +470,7 @@
 		}
 	},
 	"metadata": {
-		"dashboard": "Panel",
+		"dashboard": "Inicio",
 		"food": "Comida",
 		"exercise": "Ejercicio",
 		"diary": "Diario",

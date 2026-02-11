@@ -3,23 +3,29 @@ import { redirect } from 'next/navigation'
 import { type Metadata } from 'next'
 import Footer from '~/components/layout/footer'
 import { env } from '~/env'
+import { i18n, pathWithLocale, type Locale } from '~/i18n-config'
 
 export const metadata: Metadata = {
 	title: 'Onboarding'
 }
 
 export default async function OnboardingLayout({
-	children
+	children,
+	params
 }: {
 	children: React.ReactNode
+	params: Promise<{ lang?: string }>
 }) {
 	const authResult = await auth()
+	const { lang } = await params
+	const locale =
+		lang && i18n.locales.includes(lang as Locale) ? (lang as Locale) : i18n.defaultLocale
 
 	if (
 		authResult.sessionClaims?.metadata?.onboardingCompleted === true &&
 		env.VERCEL_ENV === 'production'
 	) {
-		redirect('/dashboard')
+		redirect(pathWithLocale('/dashboard', locale))
 	}
 
 	return (

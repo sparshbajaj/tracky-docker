@@ -9,7 +9,7 @@ import { asc, eq } from 'drizzle-orm'
 import { formatDistance } from 'date-fns'
 import { es, enUS } from 'date-fns/locale'
 import { getDictionary } from '~/get-dictionary'
-import { type Locale, i18n } from '~/i18n-config'
+import { type Locale, i18n, pathWithLocale } from '~/i18n-config'
 
 export default async function InsightsAndAnalitics({
 	user: currentUser,
@@ -96,7 +96,7 @@ export default async function InsightsAndAnalitics({
 					dateRange={dateRange}
 					value={expenditure}
 					valueUnit={dictionary.common.units.kcal}
-					href='/diary?entries=exercise'
+					href={pathWithLocale('/diary?entries=exercise', locale)}
 				>
 					<span className='mb-8 mt-8 flex place-content-end'>
 						<Square className='h-4 w-4 text-red-400' strokeWidth={4} />
@@ -107,7 +107,7 @@ export default async function InsightsAndAnalitics({
 					dateRange={dateRange}
 					value={currentWeight}
 					valueUnit={dictionary.common.units.kg}
-					href='/diary?entries=weight'
+					href={pathWithLocale('/diary?entries=weight', locale)}
 				>
 					<span className='mb-8 mt-8 flex place-content-end'>
 						<Circle className='h-4 w-4 text-purple-400' strokeWidth={4} />
@@ -120,7 +120,7 @@ export default async function InsightsAndAnalitics({
 				timeDistance={userDaysIn}
 				valueUnit=''
 				className='mt-3 rounded-lg border p-4 pb-1 dark:bg-slate-800/50'
-				href='/diary?entries=goal'
+				href={pathWithLocale('/diary?entries=goal', locale)}
 			>
 				<Progress value={goalProgress} className='mb-6 mt-6 h-4' />
 			</InsightsCard>

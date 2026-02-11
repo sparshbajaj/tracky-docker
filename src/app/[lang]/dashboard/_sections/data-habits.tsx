@@ -9,7 +9,7 @@ import { desc, eq } from 'drizzle-orm'
 import { Suspense } from 'react'
 import { Skeleton } from '~/components/ui/skeleton'
 import { getDictionary } from '~/get-dictionary'
-import { type Locale, i18n } from '~/i18n-config'
+import { type Locale, i18n, pathWithLocale } from '~/i18n-config'
 
 export default async function DataAndHabits({
 	user: currentUser,
@@ -86,7 +86,7 @@ export default async function DataAndHabits({
 				value={totalCalories}
 				valueUnit={dictionary.common.units.kcal}
 				className='w-full rounded-lg border p-4 pb-1 dark:bg-slate-800/50 sm:w-56 md:w-full md:max-w-xs'
-				href='/diary?entries=meal'
+				href={pathWithLocale('/diary?entries=meal', locale)}
 			>
 				<div className='mb-3 mt-3 flex place-content-end'>
 					<Square className='h-4 w-4 text-yellow-400' strokeWidth={4} />
@@ -108,7 +108,7 @@ export default async function DataAndHabits({
 				value={goalWeight}
 				valueUnit={dictionary.common.units.kg}
 				className='w-full rounded-lg border p-4 pb-1 dark:bg-slate-800/50 sm:w-56 md:w-full md:max-w-xs'
-				href='/diary?entries=goal'
+				href={pathWithLocale('/diary?entries=goal', locale)}
 			>
 				<div className='mb-3 mt-3 flex place-content-end'>
 					<Circle className='h-4 w-4 text-green-400' strokeWidth={4} />

@@ -1,8 +1,13 @@
 'use client'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { Button } from '~/components/ui/button'
+import { getLocaleFromPathname, pathWithLocale } from '~/i18n-config'
 
 export default function NotFound() {
+	const pathname = usePathname()
+	const locale = getLocaleFromPathname(pathname ?? '')
+	const dashboardHref = pathWithLocale('/dashboard', locale)
 	return (
 		<html lang='en'>
 			<body>
@@ -14,7 +19,7 @@ export default function NotFound() {
 						moved.
 					</p>
 					<Button asChild>
-						<Link href='/dashboard'>Back to Dashboard</Link>
+						<Link href={dashboardHref}>Back to Dashboard</Link>
 					</Button>
 				</section>
 			</body>
