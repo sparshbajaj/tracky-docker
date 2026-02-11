@@ -89,9 +89,9 @@
 	},
 	"landing": {
 		"hero": {
-			"smart": "Inteligente,",
-			"simple": "simple",
-			"fitnessTracking": "Seguimiento Fitness",
+			"smart": "Seguimiento",
+			"simple": "Fitness",
+			"fitnessTracking": "Simple e Inteligente",
 			"tagline": "Sigue tu viaje fitness, paso a paso",
 			"starOnGithub": "Estrella en GitHub",
 			"getStarted": "Comenzar",

@@ -10,6 +10,7 @@ import {
 	DialogTitle,
 	DialogTrigger
 } from '~/components/ui/dialog'
+import { SUPPORT_EMAIL } from '~/constants'
 import { useDictionary } from '../providers/dictionary-provider'
 
 export function About() {
@@ -63,7 +64,7 @@ export function About() {
 					<p>
 						{dictionary.about.contact}{' '}
 						<a
-							href='mailto:fraineralex2001@gmail.com'
+							href={`mailto:${SUPPORT_EMAIL}`}
 							className='text-blue-500'
 						>
 							{dictionary.about.email}

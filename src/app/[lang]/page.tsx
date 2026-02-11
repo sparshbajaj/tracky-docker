@@ -20,9 +20,9 @@ export default async function HomePage({
 	return (
 		<section className='relative grid min-h-screen grid-cols-3 place-items-center content-center lg:h-full lg:min-h-fit lg:content-normal'>
 			<article className='col-span-3 flex flex-col pb-10 lg:col-span-2'>
-				<h2 className='text-center font-serif text-[5.5rem] font-bold lg:text-8xl'>
+				<h2 className='text-center font-serif text-[5.5rem] font-bold lg:text-7xl'>
 					<span
-						className='mb-2 block text-nowrap text-[6rem] tracking-wide text-wood-950 dark:text-wood-100 lg:mb-6 lg:text-8xl'
+						className='mb-2 block text-nowrap text-[6rem] tracking-wide text-wood-950 dark:text-wood-100 lg:mb-6 lg:text-7xl'
 						style={{ lineHeight: 1 }}
 					>
 						{dictionary.landing.hero.smart}

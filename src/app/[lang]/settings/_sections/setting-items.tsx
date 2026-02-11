@@ -1,5 +1,5 @@
 import { MenuItem } from '../_components/menu-item'
-import { ACTIVITY_LEVELS } from '~/constants'
+import { ACTIVITY_LEVELS, SUPPORT_EMAIL } from '~/constants'
 import { BriefcaseMedical, Info, Mail } from 'lucide-react'
 import { Button } from '~/components/ui/button'
 import Link from 'next/link'
@@ -175,7 +175,7 @@ export async function SettingItems({ dictionary }: SettingItemsProps) {
 						className='h-auto w-full justify-start px-4 py-4'
 						asChild
 					>
-						<Link href={`mailto:frainerdeveloper@gmail.com`}>
+						<Link href={`mailto:${SUPPORT_EMAIL}`}>
 							<Mail className='mr-2 h-5 w-5' />
 							<div className='flex flex-col items-start'>
 								<span className='font-medium'>{t.support.reachOut}</span>

@@ -5,6 +5,7 @@ import { Button } from '../ui/button'
 import { SignedIn } from '@clerk/nextjs'
 import { usePathname } from 'next/navigation'
 import { useDictionary } from '../providers/dictionary-provider'
+import { SUPPORT_EMAIL } from '~/constants'
 import { i18n } from '~/i18n-config'
 
 export default function NavLinks() {
@@ -54,7 +55,7 @@ export default function NavLinks() {
 				title={dictionary.common.navigation.contactTitle}
 				aria-label={dictionary.common.navigation.contactTitle}
 			>
-				<Link href='mailto:frainerdeveloper@gmail.com' className=''>
+				<Link href={`mailto:${SUPPORT_EMAIL}`} className=''>
 					{dictionary.common.navigation.contact}
 				</Link>
 			</Button>

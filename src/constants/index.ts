@@ -28,6 +28,8 @@ import {
 	Treadmill
 } from '~/components/ui/icons'
 
+export const SUPPORT_EMAIL = 'hi@tracky.fit'
+
 export const ONBOARDING_SECTIONS = {
 	personal: 'personal-info',
 	metrics: 'body-metrics',
