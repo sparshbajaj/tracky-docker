@@ -35,6 +35,7 @@ export async function DiaryTimelineData({ lang }: { lang?: Locale }) {
 			carbs: food.carbs,
 			fat: food.fat,
 			title: food.name,
+			titleEs: food.nameEs,
 			diaryGroup: consumption.mealGroup
 		})
 		.from(consumption)
@@ -65,6 +66,7 @@ export async function DiaryTimelineData({ lang }: { lang?: Locale }) {
 			carbs: food.carbs,
 			fat: food.fat,
 			foodName: food.name,
+			foodNameEs: food.nameEs,
 			createdAt: food.createdAt
 		})
 		.from(food)
@@ -89,6 +91,7 @@ export async function DiaryTimelineData({ lang }: { lang?: Locale }) {
 			carbs,
 			fat,
 			title,
+			titleEs,
 			diaryGroup
 		}) => {
 			const calories = (Number(portion) / Number(servingSize)) * Number(kcal)
@@ -120,10 +123,13 @@ export async function DiaryTimelineData({ lang }: { lang?: Locale }) {
 				userDailyResume[date] = nutritionMetrics
 			}
 
+			// Usar título en español si el locale es 'es' y existe traducción
+			const displayTitle = locale === 'es' && titleEs ? titleEs : title
+
 			return {
 				type: 'meal',
 				createdAt,
-				title,
+				title: displayTitle,
 				diaryGroup,
 				nutritionInfo: {
 					calories: calories.toLocaleString(),
@@ -166,18 +172,24 @@ export async function DiaryTimelineData({ lang }: { lang?: Locale }) {
 	)
 
 	const foodEntries: DiaryEntry[] = foodRegistries.map(
-		({ calories, carbs, createdAt, fat, protein, foodName }) => ({
-			type: 'food',
-			title: dictionary.diary.entries.newFoodRegistration,
-			diaryGroup: foodName,
-			createdAt,
-			nutritionInfo: {
-				calories: Number(calories).toFixed(),
-				protein: Number(protein).toFixed(),
-				fat: Number(fat).toFixed(),
-				carbs: Number(carbs).toFixed()
+		({ calories, carbs, createdAt, fat, protein, foodName, foodNameEs }) => {
+			// Usar nombre en español si el locale es 'es' y existe traducción
+			const displayFoodName =
+				locale === 'es' && foodNameEs ? foodNameEs : foodName
+
+			return {
+				type: 'food',
+				title: dictionary.diary.entries.newFoodRegistration,
+				diaryGroup: displayFoodName,
+				createdAt,
+				nutritionInfo: {
+					calories: Number(calories).toFixed(),
+					protein: Number(protein).toFixed(),
+					fat: Number(fat).toFixed(),
+					carbs: Number(carbs).toFixed()
+				}
 			}
-		})
+		}
 	)
 
 	const { activity, fat, goal, goalWeight, height, weights } = userMetadata

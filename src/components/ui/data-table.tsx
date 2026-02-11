@@ -33,39 +33,22 @@ import {
 } from '~/components/ui/dropdown-menu'
 import { FoodDrawer } from '~/app/[lang]/dashboard/_components/food/food-drawer'
 import { Drawer, DrawerTrigger } from './drawer'
-import {
-	type Food,
-	createColumns
-} from '~/app/[lang]/dashboard/_components/food/columns'
+import { type Food } from '~/app/[lang]/dashboard/_components/food/columns'
 import { DialogClose } from './dialog'
 import { useDictionary } from '~/components/providers/dictionary-provider'
 
 interface DataTableProps<TData, TValue> {
 	columns: ColumnDef<TData, TValue>[]
 	data: TData[]
+	locale?: string
 }
 
 export function DataTable<TData, TValue>({
-	columns: _columns,
-	data
+	columns,
+	data,
+	locale
 }: DataTableProps<TData, TValue>) {
-	// eslint-disable-next-line @typescript-eslint/no-unused-vars
-	void _columns // Columns are recreated with localized labels below
 	const { dictionary } = useDictionary()
-
-	// Create localized columns
-	const columns = React.useMemo(
-		() =>
-			createColumns({
-				name: dictionary.food.form.name,
-				protein: dictionary.common.nutrition.protein,
-				carbs: dictionary.common.nutrition.carbs,
-				fat: dictionary.common.nutrition.fat,
-				calories: dictionary.common.nutrition.calories,
-				servingSize: dictionary.food.form.servingSize
-			}) as ColumnDef<TData, TValue>[],
-		[dictionary]
-	)
 
 	const [sorting, setSorting] = React.useState<SortingState>([])
 	const [columnVisibility, setColumnVisibility] =
@@ -80,11 +63,14 @@ export function DataTable<TData, TValue>({
 	const filteredData = React.useMemo(() => {
 		if (!normalizedFilter) return data
 		return data.filter(row => {
-			const name = (row as { name?: string }).name
-			if (typeof name !== 'string') return false
-			return name.toLowerCase().includes(normalizedFilter)
+			const r = row as { name?: string; nameEs?: string | null }
+			const name = r.name
+			const nameEs = r.nameEs
+			const matchesName = typeof name === 'string' && name.toLowerCase().includes(normalizedFilter)
+			const matchesNameEs = typeof nameEs === 'string' && nameEs.toLowerCase().includes(normalizedFilter)
+			return locale === 'es' ? matchesName || matchesNameEs : matchesName
 		})
-	}, [data, normalizedFilter])
+	}, [data, normalizedFilter, locale])
 
 	React.useEffect(() => {
 		const handleResize = () => {
@@ -129,13 +115,15 @@ export function DataTable<TData, TValue>({
 	})
 
 	const handleCellClick = (row: Row<TData>) => {
+		const original = row.original as Partial<Food>
 		const foodData: Food = {
-			id: row.getValue('id'),
-			name: row.getValue('name'),
-			protein: row.getValue('protein'),
-			kcal: row.getValue('kcal'),
-			fat: row.getValue('fat'),
-			carbs: row.getValue('carbs')
+			id: String(row.getValue('id')),
+			name: String(row.getValue('name')),
+			nameEs: typeof original.nameEs === 'string' ? original.nameEs : null,
+			protein: String(row.getValue('protein')),
+			kcal: String(row.getValue('kcal')),
+			fat: String(row.getValue('fat')),
+			carbs: String(row.getValue('carbs'))
 		}
 
 		setSelectedRow(foodData)

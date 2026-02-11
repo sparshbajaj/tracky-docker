@@ -7,6 +7,7 @@ import { Button } from '~/components/ui/button'
 export interface Food {
 	id: string
 	name: string
+	nameEs: string | null
 	protein: string
 	kcal: string
 	fat: string
@@ -22,7 +23,10 @@ export type FoodColumnLabels = {
 	servingSize: string
 }
 
-export const createColumns = (labels: FoodColumnLabels): ColumnDef<Food>[] => [
+export const createColumns = (
+	labels: FoodColumnLabels,
+	locale = 'en'
+): ColumnDef<Food>[] => [
 	{
 		accessorKey: 'id',
 		header: 'ID',
@@ -41,6 +45,13 @@ export const createColumns = (labels: FoodColumnLabels): ColumnDef<Food>[] => [
 				</Button>
 			)
 		},
+		cell: ({ row }) => {
+			const foodName = String(row.getValue('name'))
+			const foodNameEs = row.original.nameEs
+			// Mostrar nombre en español si el locale es 'es' y existe nameEs
+			const displayName = locale === 'es' && foodNameEs ? foodNameEs : foodName
+			return <div className='font-medium'>{displayName ?? ''}</div>
+		},
 		enableHiding: false
 	},
 	{
@@ -57,7 +68,7 @@ export const createColumns = (labels: FoodColumnLabels): ColumnDef<Food>[] => [
 			)
 		},
 		cell: ({ row }) => {
-			const protein = parseFloat(row.getValue('protein'))
+			const protein = Number(row.getValue('protein'))
 			const formatted = new Intl.NumberFormat('en-US', {
 				style: 'unit',
 				unit: 'gram'
@@ -80,7 +91,7 @@ export const createColumns = (labels: FoodColumnLabels): ColumnDef<Food>[] => [
 			)
 		},
 		cell: ({ row }) => {
-			const carbs = parseFloat(row.getValue('carbs'))
+			const carbs = Number(row.getValue('carbs'))
 			const formatted = new Intl.NumberFormat('en-US', {
 				style: 'unit',
 				unit: 'gram'
@@ -103,7 +114,7 @@ export const createColumns = (labels: FoodColumnLabels): ColumnDef<Food>[] => [
 			)
 		},
 		cell: ({ row }) => {
-			const fat = parseFloat(row.getValue('fat'))
+			const fat = Number(row.getValue('fat'))
 			const formatted = new Intl.NumberFormat('en-US', {
 				style: 'unit',
 				unit: 'gram'
@@ -126,7 +137,7 @@ export const createColumns = (labels: FoodColumnLabels): ColumnDef<Food>[] => [
 			)
 		},
 		cell: ({ row }) => {
-			const kcal = parseFloat(row.getValue('kcal'))
+			const kcal = Number(row.getValue('kcal'))
 			const formatted = `${kcal} kcal`
 
 			return <div className='text-left'>{formatted}</div>

@@ -23,6 +23,7 @@ async function getFoodData(userId: string) {
 		.select({
 			id: food.id,
 			name: food.name,
+			nameEs: food.nameEs,
 			protein: food.protein,
 			kcal: food.kcal,
 			fat: food.fat,
@@ -61,7 +62,7 @@ export default async function FoodDialog({ lang }: { lang?: Locale }) {
 				</DialogHeader>
 
 				<div className='mx-auto px-2 md:container'>
-					<FoodDataTable data={foodData} labels={labels} />
+					<FoodDataTable data={foodData} labels={labels} locale={locale} />
 				</div>
 			</DialogContent>
 		</Dialog>

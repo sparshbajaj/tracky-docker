@@ -40,7 +40,7 @@ export function FoodDrawer({
 	foodData: Food
 	handleDrawerClose: () => void
 }) {
-	const { dictionary } = useDictionary()
+	const { dictionary, locale } = useDictionary()
 	const [portion, setPortion] = React.useState('100')
 	const [unit, setUnit] = React.useState<keyof typeof unitConversions>('g')
 	const [mealGroup, setMealGroup] = React.useState('uncategorized')
@@ -101,7 +101,11 @@ export function FoodDrawer({
 		<DrawerContent className='min-w-80'>
 			<div className='mx-auto w-full max-w-xl'>
 				<DrawerHeader>
-					<DrawerTitle className='text-center'>{foodData.name}</DrawerTitle>
+					<DrawerTitle className='text-center'>
+						{locale === 'es' && foodData.nameEs
+							? foodData.nameEs
+							: foodData.name}
+					</DrawerTitle>
 					{state?.message && !state.success && (
 						<DrawerDescription className='text-center text-red-500'>
 							{state.message}
