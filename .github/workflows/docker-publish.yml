@@ -2,11 +2,13 @@ name: Build and Publish Docker Image
 
 on:
   push:
-    branches: ["main"] # Build every time you push to main
+    branches: ["main"]
 
+# This forces the runner to use Node.js 24 for the actions as requested
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
 
 jobs:
   build-and-push:
@@ -17,9 +19,11 @@ jobs:
 
     steps:
       - name: Checkout repository
+        # Updated to v4 (latest stable)
         uses: actions/checkout@v4
 
       - name: Log in to the Container registry
+        # Updated to v3 (latest stable)
         uses: docker/login-action@v3
         with:
           registry: ${{ env.REGISTRY }}
@@ -27,7 +31,8 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@v5
+        # Updated to v6 (supports newer Node runtimes)
+        uses: docker/build-push-action@v6
         with:
           context: .
           push: true
