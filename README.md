@@ -62,6 +62,33 @@ To run the project in your local environment, follow these steps:
 
 That's it! Your project should now be up and running locally.
 
+## 🐳 Docker Deployment (ZimaOS / CasaOS)
+
+To deploy **tracky** using Docker on your ZimaOS server:
+
+1. Pull the Docker image:
+   ```bash
+   docker pull ghcr.io/sparshbajaj/tracky-docker:main
+   ```
+
+2. Create a `.env` file with the required environment variables:
+   ```env
+   POSTGRES_URL=your_postgres_connection_url
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+   CLERK_SECRET_KEY=your_clerk_secret_key
+   OPENAI_API_KEY=your_openai_api_key
+   DOMAIN=your-zima-server-ip:3000
+   ```
+
+3. Run with Docker Compose:
+   ```bash
+   docker compose up -d
+   ```
+
+4. Access the app at `http://your-zima-server-ip:3000`.
+
+> **Note:** The app requires an external PostgreSQL database (e.g. [Neon](https://neon.tech/)), a [Clerk](https://clerk.com/) account for authentication, and an [OpenAI](https://openai.com/) API key for AI features. Configure these services and add the credentials to your `.env` file before starting the container.
+
 ## 🌟 Contributions
 
 Thank you for exploring this project! If you find the structure or features useful, feel free to use this code for your project. Contributions are welcome! If you have ideas, corrections, or improvements, please open an issue or send a pull request. Your collaboration is valued and appreciated! 🚀
