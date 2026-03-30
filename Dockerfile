@@ -19,6 +19,10 @@ ENV NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
 
 # Important for Next.js standalone output
 ENV NEXT_PRIVATE_STANDALONE=true
+
+# Skip env validation during build (secrets aren't available at build time)
+ENV SKIP_ENV_VALIDATION=1
+
 RUN bun run build
 
 # Runner stage
