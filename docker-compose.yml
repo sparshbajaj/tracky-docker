@@ -1,0 +1,26 @@
+services:
+  tracky:
+    image: ghcr.io/sparshbajaj/tracky-docker:main
+    container_name: tracky
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      # Postgres
+      - POSTGRES_URL=${POSTGRES_URL}
+
+      # Clerk
+      - NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY}
+      - CLERK_SECRET_KEY=${CLERK_SECRET_KEY}
+
+      # Clerk behavior
+      - NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/dashboard
+      - NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/onboarding
+      - NEXT_PUBLIC_CLERK_SIGN_IN_FORCE_REDIRECT_URL=/dashboard
+      - NEXT_PUBLIC_CLERK_SIGN_UP_FORCE_REDIRECT_URL=/onboarding
+
+      # OpenAI
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+
+      # Domain (set DOMAIN in your .env file to your ZimaOS server IP/hostname and port)
+      - DOMAIN=${DOMAIN:-localhost:3000}
