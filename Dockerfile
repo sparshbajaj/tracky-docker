@@ -1,10 +1,11 @@
 # Use the official Bun image
-FROM oven/bun:1.1 AS base
+FROM oven/bun:1 AS base
 WORKDIR /app
 
 # Install dependencies
 FROM base AS deps
-COPY package.json bun.lockb ./
+# The asterisk covers both bun.lockb and the newer bun.lock
+COPY package.json bun.lock* ./
 RUN bun install --frozen-lockfile
 
 # Build the app
@@ -16,6 +17,8 @@ COPY . .
 ARG NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
 ENV NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
 
+# Important for Next.js standalone output
+ENV NEXT_PRIVATE_STANDALONE=true
 RUN bun run build
 
 # Runner stage
