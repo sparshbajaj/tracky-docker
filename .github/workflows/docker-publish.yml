@@ -1,41 +1,37 @@
-name: Build and Publish Docker Image
+# Use the official Bun image
+FROM oven/bun:1 AS base
+WORKDIR /app
 
-on:
-  push:
-    branches: ["main"]
+# Install dependencies
+FROM base AS deps
+# The asterisk covers both bun.lockb and the newer bun.lock
+COPY package.json bun.lock* ./
+RUN bun install
 
-# This forces the runner to use Node.js 24 for the actions as requested
-env:
-  REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository }}
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true 
+# Build the app
+FROM base AS builder
+COPY --from=deps /app/node_modules ./node_modules
+COPY . .
 
-jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
+# Set Build-time environment variables
+ARG NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
+ENV NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=$NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY
 
-    steps:
-      - name: Checkout repository
-        # Updated to v4 (latest stable)
-        uses: actions/checkout@v4
+# Important for Next.js standalone output
+ENV NEXT_PRIVATE_STANDALONE=true
+RUN bun run build
 
-      - name: Log in to the Container registry
-        # Updated to v3 (latest stable)
-        uses: docker/login-action@v3
-        with:
-          registry: ${{ env.REGISTRY }}
-          username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+# Runner stage
+FROM base AS runner
+WORKDIR /app
+ENV NODE_ENV=production
 
-      - name: Build and push Docker image
-        # Updated to v6 (supports newer Node runtimes)
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          push: true
-          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-          build-args: |
-            NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=${{ secrets.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY }}
+# Copy necessary files from builder
+COPY --from=builder /app/public ./public
+COPY --from=builder /app/.next/standalone ./
+COPY --from=builder /app/.next/static ./.next/static
+
+EXPOSE 3000
+ENV PORT=3000
+# Ensure we run the standalone server
+CMD ["bun", "server.js"]
